@@ -1,0 +1,27 @@
+html, body {
+  position: relative;
+  height: 100%;
+}
+body {
+  background: #fff;
+  font-family: "Times New Roman", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  font-size: 14px;
+  color:#000;
+  margin: 0;
+  padding: 0;
+}
+.swiper-container {
+  width: 100%;
+  height: 100%;
+}
+.swiper-slide {
+  font-size: 16px;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 30px;
+  overflow: auto;
+}
+.swiper-slide .scroll{
+  height: auto;
+}
