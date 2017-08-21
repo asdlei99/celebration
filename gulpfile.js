@@ -31,18 +31,23 @@ gulp.task('sass', function(){
   .pipe(gulp.dest('dist/'));
 });
 gulp.task('sprite', function(){
-  gulp.src('src/imgs/*.png')
+  gulp.src('src/imgs/icons/*.png')
     .pipe(spritesmith({
       imgName: 'sprite.png',
       cssName: 'sprite.css'
     }))
     .pipe(gulp.dest('dist/'));
 });
+gulp.task('imagemin', function(){
+  gulp.src('src/imgs/*.png')
+    .pipe(gulp.dest('dist/imgs/'));
+});
 
 gulp.task('watch', function(){
   gulp.watch(['src/index.html', 'src/pages/*.html'], ['include']);
   gulp.watch('src/js/*.js', ['js']);
   gulp.watch('src/css/*.scss', ['sass']);
-  gulp.watch('src/imgs/*.png', ['sprite']);
+  gulp.watch('src/imgs/icons/*.png', ['sprite']);
+  gulp.watch('src/imgs/*.png', ['imagemin']);
 });
-gulp.task('build', ['include', 'js', 'sass', 'sprite']);
+gulp.task('build', ['include', 'js', 'sass', 'sprite', 'imagemin']);
