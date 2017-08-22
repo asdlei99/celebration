@@ -1,0 +1,74 @@
+.swiper-slide {
+  background: url(./imgs/bg.png) repeat-y 0 0;
+  background-size: 100%; }
+
+.icon {
+  display: inline-block; }
+
+html, body {
+  position: relative;
+  height: 100%; }
+
+body {
+  background: #fff;
+  font-family: "Times New Roman", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0; }
+
+.swiper-container {
+  width: 100%;
+  height: 100%; }
+
+.swiper-slide {
+  font-size: 16px;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: auto; }
+
+.swiper-slide .scroll {
+  height: auto; }
+
+.m-words .wordWra {
+  position: relative;
+  margin: 0 auto;
+  transform: scale(0.5); }
+  .m-words .wordWra > div {
+    position: absolute;
+    overflow: hidden; }
+
+.m-words .first {
+  bottom: 65px;
+  right: 4px;
+  width: 140px;
+  height: 0px; }
+
+.m-words .icon-first {
+  position: absolute;
+  bottom: 0; }
+
+.m-words .second {
+  left: 3px;
+  top: 3px;
+  height: 0; }
+
+.m-words .third {
+  bottom: 0;
+  left: 10px;
+  width: 0; }
+
+.m-words .sentence {
+  text-align: center; }
+
+.m-words .imgWra {
+  position: absolute;
+  bottom: 0;
+  width: 100%; }
+  .m-words .imgWra > img {
+    width: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    position: absolute;
+    bottom: 0; }
