@@ -1,38 +1,223 @@
-window.addEventListener('load', function(){
-    var swiper = new Swiper('.swiper-container', {
-    direction: 'vertical',
-    slidesPerView: 'auto',
-    mousewheelControl: true,
-    });
-    var startScroll, touchStart, touchCurrent;
-    swiper.slides.on('touchstart', function (e) {
-        startScroll = this.scrollTop;
-        touchStart = e.targetTouches[0].pageY;
-    }, true);
-    swiper.slides.on('touchmove', function (e) {
-        touchCurrent = e.targetTouches[0].pageY;
-        var touchesDiff = touchCurrent - touchStart;
-        var slide = this;
-        var onlyScrolling = 
-                ( slide.scrollHeight > slide.offsetHeight ) && //allow only when slide is scrollable
-                (
-                    ( touchesDiff < 0 && startScroll === 0 ) || //start from top edge to scroll bottom
-                    ( touchesDiff > 0 && startScroll === ( slide.scrollHeight - slide.offsetHeight ) ) || //start from bottom edge to scroll top
-                    ( startScroll > 0 && startScroll < ( slide.scrollHeight - slide.offsetHeight ) ) //start from the middle
-                );
-        if (onlyScrolling) {
-            e.stopPropagation();
+;(function(win, lib) {
+    var doc = win.document;
+    var docEl = doc.documentElement;
+    var metaEl = doc.querySelector('meta[name="viewport"]');
+    var flexibleEl = doc.querySelector('meta[name="flexible"]');
+    var dpr = 0;
+    var scale = 0;
+    var tid;
+    var flexible = lib.flexible || (lib.flexible = {});
+    
+    if (metaEl) {
+        console.warn('将根据已有的meta标签来设置缩放比例');
+        var match = metaEl.getAttribute('content').match(/initial\-scale=([\d\.]+)/);
+        if (match) {
+            scale = parseFloat(match[1]);
+            dpr = parseInt(1 / scale);
         }
-    }, true);
-    // 横屏监听
-    var updateOrientation = function(){
-    if(window.orientation=='-90' || window.orientation=='90'){
-        console.log('为了更好的体验，请将手机/平板竖过来！');      
-    };
+    } else if (flexibleEl) {
+        var content = flexibleEl.getAttribute('content');
+        if (content) {
+            var initialDpr = content.match(/initial\-dpr=([\d\.]+)/);
+            var maximumDpr = content.match(/maximum\-dpr=([\d\.]+)/);
+            if (initialDpr) {
+                dpr = parseFloat(initialDpr[1]);
+                scale = parseFloat((1 / dpr).toFixed(2));    
+            }
+            if (maximumDpr) {
+                dpr = parseFloat(maximumDpr[1]);
+                scale = parseFloat((1 / dpr).toFixed(2));    
+            }
+        }
     }
-    window.onorientationchange = updateOrientation;
+
+    if (!dpr && !scale) {
+        var isAndroid = win.navigator.appVersion.match(/android/gi);
+        var isIPhone = win.navigator.appVersion.match(/iphone/gi);
+        var devicePixelRatio = win.devicePixelRatio;
+        if (isIPhone) {
+            // iOS下，对于2和3的屏，用2倍的方案，其余的用1倍方案
+            if (devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {                
+                dpr = 3;
+            } else if (devicePixelRatio >= 2 && (!dpr || dpr >= 2)){
+                dpr = 2;
+            } else {
+                dpr = 1;
+            }
+        } else {
+            // 其他设备下，仍旧使用1倍的方案
+            dpr = 1;
+        }
+        scale = 1 / dpr;
+    }
+
+    docEl.setAttribute('data-dpr', dpr);
+    if (!metaEl) {
+        metaEl = doc.createElement('meta');
+        metaEl.setAttribute('name', 'viewport');
+        metaEl.setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+        if (docEl.firstElementChild) {
+            docEl.firstElementChild.appendChild(metaEl);
+        } else {
+            var wrap = doc.createElement('div');
+            wrap.appendChild(metaEl);
+            doc.write(wrap.innerHTML);
+        }
+    }
+
+    function refreshRem(){
+        var width = docEl.getBoundingClientRect().width;
+        if (width / dpr > 540) {
+            width = 540 * dpr;
+        }
+        var rem = width / 10;
+        docEl.style.fontSize = rem + 'px';
+        flexible.rem = win.rem = rem;
+    }
+
+    win.addEventListener('resize', function() {
+        clearTimeout(tid);
+        tid = setTimeout(refreshRem, 300);
+    }, false);
+    win.addEventListener('pageshow', function(e) {
+        if (e.persisted) {
+            clearTimeout(tid);
+            tid = setTimeout(refreshRem, 300);
+        }
+    }, false);
+
+    if (doc.readyState === 'complete') {
+        doc.body.style.fontSize = 12 * dpr + 'px';
+    } else {
+        doc.addEventListener('DOMContentLoaded', function(e) {
+            doc.body.style.fontSize = 12 * dpr + 'px';
+        }, false);
+    }
+    
+
+    refreshRem();
+
+    flexible.dpr = win.dpr = dpr;
+    flexible.refreshRem = refreshRem;
+    flexible.rem2px = function(d) {
+        var val = parseFloat(d) * this.rem;
+        if (typeof d === 'string' && d.match(/rem$/)) {
+            val += 'px';
+        }
+        return val;
+    }
+    flexible.px2rem = function(d) {
+        var val = parseFloat(d) / this.rem;
+        if (typeof d === 'string' && d.match(/px$/)) {
+            val += 'rem';
+        }
+        return val;
+    }
+
+})(window, window['lib'] || (window['lib'] = {}));
+/* ==================================================
+<| swiper
+================================================== */
+var swiper;
+window.addEventListener('load', function() {
+	swiper = new Swiper('.swiper-container', {
+		direction: 'vertical',
+		slidesPerView: 'auto',
+		mousewheelControl: true,
+	});
+	var startScroll, touchStart, touchCurrent;
+	swiper.slides.on('touchstart', function(e) {
+		startScroll = this.scrollTop;
+		touchStart = e.targetTouches[0].pageY;
+	}, true);
+	swiper.slides.on('touchmove', function(e) {
+		touchCurrent = e.targetTouches[0].pageY;
+		var touchesDiff = touchCurrent - touchStart;
+		var slide = this;
+		var onlyScrolling = 
+				( slide.scrollHeight > slide.offsetHeight ) && //allow only when slide is scrollable
+				(
+					( touchesDiff < 0 && startScroll === 0 ) || //start from top edge to scroll bottom
+					( touchesDiff > 0 && startScroll === ( slide.scrollHeight - slide.offsetHeight ) ) || //start from bottom edge to scroll top
+					( startScroll > 0 && startScroll < ( slide.scrollHeight - slide.offsetHeight ) ) //start from the middle
+				);
+		if (onlyScrolling) {
+			e.stopPropagation();
+		}
+	}, true);
+	// 横屏监听
+	var updateOrientation = function() {
+	if(window.orientation=='-90' || window.orientation=='90'){
+		console.log('为了更好的体验，请将手机/平板竖过来！');      
+	};
+	}
+	window.onorientationchange = updateOrientation;
 });
-window.addEventListener('load', function(){
+/* ==================================================
+<| $(document).ready
+================================================== */
+window.addEventListener('load', function() {//$(document).ready(function() {
+	initializePageTitle();
+})
+/* ==================================================
+<| initializePageTitle
+================================================== */
+function initializePageTitle() {
+	/* no scrolling */
+	swiper.disableMousewheelControl();
+	//swiper.disableKeyboardControl();
+	/* fingerprinting args */
+	var timer = 0;
+	var printing;
+	/* if keep printing */
+	$("#button").mousedown(function() { /* mousedown对电脑网页正常，手机页面有奇怪的效果(?) */
+		/* set timer */
+		printing = setInterval(function() {
+			timer ++;
+			if (timer == 2) {
+				/* clear timer */
+				timer = 0;
+				clearInterval(printing);
+				/* show icon */
+				$(".dp").fadeOut(1000);
+				$("#zw").fadeIn(1000);
+				/* and swip to the next page */
+				setTimeout(function() {
+					swiper.slideNext(false);
+				}, 2000);
+				/* allow to scroll */
+				swiper.enableMousewheelControl();
+				//swiper.enableKeyboardControl();
+			}
+		}, 500);
+	});
+	/* if not keep printing */
+	$("#button").mouseup(function() {
+		/* clear timer */
+		timer = 0;
+		clearInterval(printing);
+	});
+}
+/*var time=0;
+var p1=document.getElementById("P1");
+p1.addEventListener("touch",function(){
+	var i=setInterval(function(){
+		time++;
+		if(time==2){
+			clearInterval(i);
+			p1.hide();
+		}
+	},true)
+})*/
+
+/*var p1=document.getElementById("P1");
+p1.addEventListener("click",function(){
+	console.log("111");
+});
+*/
+
+window.addEventListener('load', function() {
+  return;
   var canvas;
   var ctx;
   var sentences = [
