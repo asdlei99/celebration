@@ -2,6 +2,9 @@
 <| title
 ================================================== */
 .m-title {
+	/* ==============================================
+	<| all
+	============================================== */
 	* {
 		margin: 0px;
 		padding: 0px;
@@ -14,14 +17,17 @@
 		top: 0px;
 		left: 0px;
 	}
-	#p1 {
+	/* ==============================================
+	<| main
+	============================================== */
+	.title {
 		margin: auto;
 		margin-top: 2.64rem;
 		width: 3.2rem;
 		font-size: 0.63rem;
 		font-family: 楷体;
 	}
-	#p2 {
+	.e {
 		width: 4.666667rem;
 		height: 4.613333rem;
 		margin: auto;
@@ -31,7 +37,10 @@
 			height: 100%;
 		}
 	}
-	#div1 {
+	/* ==============================================
+	<| fingerprint
+	============================================== */
+	.intro {
 		position: relative;
 		z-index: 1;
 		width: 2.8rem;
@@ -62,20 +71,23 @@
 			font-family: 楷体;
 		}
 	}
-	#div2 {
+	.fingerprint {
 		position: relative;
 		z-index: 0;
 		width: 1.173333rem;
 		height: 1.226667rem;
 		margin: auto;
-		top:-1.653333rem;
+		top: -1.653333rem;
+		img {
+			display: none;
+			width: 100%;
+			height: 100%;
+		}
 	}
-	#zw {
-		display: none;
-		width: 100%;
-		height: 100%;
-	}
-	#div3 {
+	/* ==============================================
+	<| page-bottom
+	============================================== */
+	.logo {
 		position: relative;
 		width: 2.173333rem;
 		height: 0.746667rem;
