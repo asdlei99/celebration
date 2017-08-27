@@ -14,8 +14,9 @@ function initializePageTitle() {
 	/* fingerprinting args */
 	var timer = 0;
 	var printing;
+	var button = $(".m-title").find(".mark");
 	/* if keep printing */
-	$("#button").mousedown(function() { /* mousedown对电脑网页正常，手机页面有奇怪的效果(?) */
+	button.mousedown(function() { /* mousedown对电脑网页正常，手机页面有奇怪的效果(?) */
 		/* set timer */
 		printing = setInterval(function() {
 			timer ++;
@@ -24,8 +25,8 @@ function initializePageTitle() {
 				timer = 0;
 				clearInterval(printing);
 				/* show icon */
-				$(".dp").fadeOut(1000);
-				$("#zw").fadeIn(1000);
+				$(".m-title").find(".dp").fadeOut(1000);
+				$(".m-title").find(".fingerprint").find("img").fadeIn(1000);
 				/* and swip to the next page */
 				setTimeout(function() {
 					swiper.slideNext(false);
@@ -37,7 +38,7 @@ function initializePageTitle() {
 		}, 500);
 	});
 	/* if not keep printing */
-	$("#button").mouseup(function() {
+	button.mouseup(function() {
 		/* clear timer */
 		timer = 0;
 		clearInterval(printing);

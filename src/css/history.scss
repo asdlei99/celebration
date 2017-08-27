@@ -6,32 +6,7 @@
 	/* ==============================================
 	<| mixin
 	============================================== */
-	@mixin div-border {
-		width: 100%;
-		background-color: #b5b5b5;
-	}
-	@mixin arrow($dir, $size, $color) {
-		width: 0;
-		height: 0;
-		border: $size solid transparent;
-		$visible: $size solid $color;
-		@if $dir == 0 {
-			border-top: $visible;
-			border-bottom: none;
-		}
-		@if $dir == 1 {
-			border-bottom: $visible;
-			border-top: none;
-		}
-		@if $dir == 2 {
-			border-left: $visible;
-			border-right: none;
-		}
-		@if $dir == 3 {
-			border-right: $visible;
-			border-left: none;
-		}
-	}
+	@import "mixin.scss";
 	/* ==============================================
 	<| header
 	============================================== */
@@ -75,13 +50,13 @@
 				margin: 0 auto;
 			}
 			.box {
-					width: 50%;
-					max-width: 468px;
-					height: 108px;
-					line-height: 108px;
-					font-size: 64px;
+				width: 50%;
+				max-width: 468px;
+				height: 108px;
 				margin: 0 auto;
 				text-align: center;
+				line-height: 108px;
+				font-size: 64px;
 				color: #FFF;
 				background-color: $box-color;
 				border-radius: 15px;
@@ -152,14 +127,14 @@
 			height: 179px;
 			top: 200px;
 			left: -170px;
-			padding-left: 10px;
+			padding-left: 14px;
 		}
 		.dialog.d-3 {
 			width: 460px;
 			height: 182px;
 			top: 218px;
 			left: -170px;
-			padding-left: 10px;
+			padding-left: 14px;
 		}
 		.dialog.d-4 {
 			width: 249px;
@@ -235,9 +210,9 @@
 			border: none;
 			outline: none;
 			border-radius: 10px;
-		}
-		.next-page:hover {
-			background-color: #919191;
+			&:hover {
+				background-color: #b5b5b5;
+			}
 		}
 	}
 	/* ==============================================
