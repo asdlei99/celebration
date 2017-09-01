@@ -32,17 +32,16 @@ window.addEventListener('load', function(){
     }
     window.onorientationchange = updateOrientation;
 });
-var index_i = 0;
+var width_a = $(window).width() + "px";
+$(".window li img").css("width",width_a);
 
 var first_pic = $(".window li").first().clone();
-var size = $(".window li").length;
+var size = 2;
 var toleft = $(".window li img").width();
 var win_width = size*toleft + "px";
 var left;
 
-
 $(".window").css("width",win_width);
-$(".window").append(first_pic);
 
 var key = 0;
 var timer = setInterval(autoplay,1000);
@@ -50,7 +49,7 @@ var timer = setInterval(autoplay,1000);
 function autoplay(){
 	key++;
 	if (key>size-1) {
-		$(".window").css("margin-left","0px");
+		$(".window").stop().css("margin-left","0px");
 		key = 0;
 	}
 	else{
@@ -84,6 +83,9 @@ $.ajax({
 			size++;
 			$(".window").width(size*toleft);
 		}
+		$(".window").append(first_pic);
+		var width_a = $(window).width() + "px";
+		$(".window li img").css("width",width_a);
 	},
 })
 var mousePressed = false;

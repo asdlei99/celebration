@@ -150,8 +150,7 @@ body {
 
 .window > li > img {
   float: left;
-  height: 150px;
-  width: 250px; }
+  height: 150px; }
 
 .canvas {
   width: 100%;
