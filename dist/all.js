@@ -32,6 +32,134 @@ window.addEventListener('load', function(){
     }
     window.onorientationchange = updateOrientation;
 });
+var index_i = 0;
+
+var first_pic = $(".window li").first().clone();
+var size = $(".window li").length;
+var toleft = $(".window li img").width();
+var win_width = size*toleft + "px";
+var left;
+
+
+$(".window").css("width",win_width);
+$(".window").append(first_pic);
+
+var key = 0;
+var timer = setInterval(autoplay,1000);
+
+function autoplay(){
+	key++;
+	if (key>size-1) {
+		$(".window").css("margin-left","0px");
+		key = 0;
+	}
+	else{
+		left = -1*key*toleft + "px";
+		$(".window").animate({marginLeft:left},1000);
+	}
+}
+
+//获取每次img的src储存到数组中
+function Download(){
+	var srcArray = new Array();
+	var i = 0;
+	$(".picc").each(function(){
+		srcArray[i] = $(this)[0].src;
+		i++;
+	});
+}
+
+Download();
+
+$.ajax({
+	type:'POST',
+	url:'api/index.php?name=download',
+	success:function(data){
+		data = JSON.parse(data);
+		//每次获取到url的时候新建一个图片
+		var len = data.length;
+		for(var i=0;i<len-1;i++){
+			var new_img = '<li><img src="'+data[i]+'"></li>';
+			$(".window").append(new_img);
+			size++;
+			$(".window").width(size*toleft);
+		}
+	},
+})
+var mousePressed = false;
+var lastX, lastY;
+var ctx;
+var canvas_width = $("#myCanvas").width();
+var canvas_height = $("#myCanvas").height();
+
+function Draw(x, y, isDown){
+    if (isDown) {
+        ctx.beginPath();
+        ctx.strokeStyle = "#000000";
+        ctx.lineWidth = 9;
+        ctx.lineJoin = "round";
+        ctx.moveTo(lastX, lastY);
+        ctx.lineTo(x, y);
+        ctx.closePath();
+        ctx.stroke();
+    }
+    lastX = x; 
+    lastY = y;
+}
+
+function InitThis(){
+    ctx = document.getElementById('myCanvas').getContext("2d");
+    ctx.fillStyle="#fff";
+    ctx.fillRect(0,0,canvas_width,canvas_height);
+ 
+    $('#myCanvas').mousedown(function (e) {
+        mousePressed = true;
+        Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, false);
+    });
+ 
+    $('#myCanvas').mousemove(function (e) {
+    	mousePressed = true;
+        if (mousePressed) {
+            Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
+        }
+    });
+ 
+    $('#myCanvas').mouseup(function (e) {
+        mousePressed = false;
+    });
+
+    $('#myCanvas').mouseleave(function (e) {
+        mousePressed = false;
+    });
+}
+
+//清空画板
+function clearBoard(){
+	ctx.fillStyle="#fff";
+    ctx.fillRect(0,0,canvas_width,canvas_height);
+}
+
+function UploadPic(){
+	var Pic = document.getElementById("myCanvas").toDataURL("image/png",0.5);
+	// Pic = utf16ToUtf8(Pic);
+	// alert(typeof(Pic));
+	$.ajax({
+	type: 'POST',
+	url:'./api/index.php?name=upload',
+	data: {'data':Pic},
+	contentType:  'application/x-www-form-urlencoded; charset=utf-8',
+	success: function(data){
+			if(data==-1){
+				alert("上传成功！");	
+                window.location.reload();
+			}else{
+				alert(String(data));
+			}		
+	}
+})
+}
+
+InitThis();
 window.addEventListener('load', function(){
   var canvas;
   var ctx;

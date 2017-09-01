@@ -8,8 +8,9 @@
   <link rel="stylesheet" href="lib/swiper.min.css">
   <link rel="stylesheet" href="all.css">
   <link rel="stylesheet" href="sprite.css">
+  <script src="lib/jquery-3.2.1.min.js"></script>
 </head>
-<body>
+<body onload="InitThis()">
   <div class="swiper-container">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
@@ -23,6 +24,12 @@
       </div>
       <div class="swiper-slide">
         <!--=include ./pages/money.html -->
+      </div>
+      <div class="swiper-slide">
+        <!--=include ./pages/sign.html -->
+      </div>
+      <div class="swiper-slide" id="tosign" onload="InitThis()">
+        <!--=include ./pages/tosign.html -->
       </div>
     </div>
   </div>

@@ -8,8 +8,9 @@
   <link rel="stylesheet" href="lib/swiper.min.css">
   <link rel="stylesheet" href="all.css">
   <link rel="stylesheet" href="sprite.css">
+  <script src="lib/jquery-3.2.1.min.js"></script>
 </head>
-<body>
+<body onload="InitThis()">
   <div class="swiper-container">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
@@ -84,6 +85,34 @@
         	</div>
         	<a href="#">参与筹款</a>
         </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="sign">
+        	<h1>签名墙</h1>
+        	<img src="">
+        	<form action="./api/index.php" name="download">
+        		<div class="play1">
+        			<ul class="window">
+        				<li><img src="./imgs/test.png" class="picc"></li>
+        			</ul>
+        	</div>
+        	</form>
+        	<div class="play2"></div>
+        	<a href="#tosign">签名</a>
+        </div>
+      </div>
+      <div class="swiper-slide" id="tosign" onload="InitThis()">
+        <div class="tosign" onload="InitThis()">
+        	<form action="./api/index.php" name="upload">
+        		<div class="canvas">
+        			<canvas id="myCanvas"></canvas>
+        		</div>
+        	</form>
+        	<a onclick="UploadPic()">签名</a>
+        	<a onclick="clearBoard()">清空画板</a>
+        	<span></span>
+        </div>
+        
       </div>
     </div>
   </div>
