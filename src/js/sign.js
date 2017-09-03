@@ -43,7 +43,7 @@ $.ajax({
 		data = JSON.parse(data);
 		//每次获取到url的时候新建一个图片
 		var len = data.length;
-		for(var i=0;i<len-1;i++){
+		for(var i=0;i<len;i++){
 			var new_img = '<li><img src="'+data[i]+'"></li>';
 			$(".window").append(new_img);
 			size++;
