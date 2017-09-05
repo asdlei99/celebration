@@ -1,10 +1,13 @@
 /* ==================================================
-<| mixin
+<| mixin div-border
 ================================================== */
 @mixin div-border {
 	width: 100%;
 	background-color: #b5b5b5;
 }
+/* ==================================================
+<| mixin arrow
+================================================== */
 @mixin arrow($dir, $size, $color) {
 	width: 0;
 	height: 0;
@@ -27,12 +30,18 @@
 		border-left: none;
 	}
 }
+/* ==================================================
+<| mixin opacity
+================================================== */
 @mixin opacity($val) {
 	filter: alpha(opacity = $val);
 	-moz-opacity: $val;
 	-khtml-opacity: $val;
 	opacity: $val;
 }
+/* ==================================================
+<| mixin scrolling-list
+================================================== */
 @mixin scrolling-list() {
 	width: 576px;
 	height: 192px;
@@ -54,8 +63,9 @@
 		position: relative;
 		z-index: 1;
 		margin: 0 auto;
-		margin-top: -76px * 2;
+		margin-top: -76px;// * 2;
 		text-align: center;
+		outline: none;
 		p {
 			height: 64px;
 			margin: auto auto;
