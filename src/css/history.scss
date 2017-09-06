@@ -194,28 +194,6 @@
 		}
 	}
 	/* ==============================================
-	<| page-bottom
-	============================================== */
-	.page-bottom {
-		width: 100%;
-		height: 150px;
-		text-align: center;
-		.next-page {
-			width: 450px;
-			height: 80px;
-			text-align: center;
-			font-size: 32px;
-			color: #FFF;
-			background-color: #79828B;
-			border: none;
-			outline: none;
-			border-radius: 10px;
-			&:hover {
-				background-color: #b5b5b5;
-			}
-		}
-	}
-	/* ==============================================
 	<| footer
 	============================================== */
 	.footer {
