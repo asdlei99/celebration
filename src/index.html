@@ -1,40 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <link rel="stylesheet" href="lib/swiper.min.css">
-  <link rel="stylesheet" href="all.css">
-  <link rel="stylesheet" href="sprite.css">
-  <script src="lib/jquery-3.2.1.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="lib/swiper.min.css">
+    <link rel="stylesheet" href="all.css">
+    <link rel="stylesheet" href="sprite.css">
+    <script src="lib/jquery-3.2.1.min.js"></script>
 </head>
+
 <body onload="InitThis()">
-  <div class="swiper-container">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <!--=include ./pages/words.html -->
-      </div>
-      <div class="swiper-slide">
-        <!--=include ./pages/timeline.html -->        
-      </div>
-      <div class="swiper-slide">
-        <!--=include ./pages/home.html -->        
-      </div>
-      <div class="swiper-slide">
-        <!--=include ./pages/money.html -->
-      </div>
-      <div class="swiper-slide">
-        <!--=include ./pages/sign.html -->
-      </div>
-      <div class="swiper-slide" id="tosign" onload="InitThis()">
-        <!--=include ./pages/tosign.html -->
-      </div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <!--=include ./pages/words.html -->
+            </div>
+            <div class="swiper-slide">
+                <!--=include ./pages/timeline.html -->
+            </div>
+            <div class="swiper-slide">
+                <!--=include ./pages/home.html -->
+            </div>
+            <div class="swiper-slide">
+                <!--=include ./pages/money.html -->
+            </div>
+            <div class="swiper-slide">
+                <!--=include ./pages/sign.html -->
+            </div>
+            <div class="swiper-slide swiper-no-swiping" id="tosign" onload="InitThis()">
+                <!--=include ./pages/tosign.html -->
+            </div>
+        </div>
     </div>
-  </div>
-  <script src="lib/swiper.min.js"></script>
-  <script src="lib/Tween.js"></script>
-  <script src="all.js"></script>
+    <script src="lib/swiper.min.js"></script>
+    <script src="lib/Tween.js"></script>
+    <script src="all.js"></script>
 </body>
+
 </html>
