@@ -20,7 +20,7 @@ function initializePageTitle() {
 		/* set timer */
 		printing = setInterval(function() {
 			timer ++;
-			if (timer == 2) {
+			if (timer == 1) {
 				/* clear timer */
 				timer = 0;
 				clearInterval(printing);
@@ -40,8 +40,19 @@ function initializePageTitle() {
 	/* if not keep printing */
 	button.mouseup(function() {
 		/* clear timer */
+		console.log("mouseup");
 		timer = 0;
 		clearInterval(printing);
+		/* DEBUG */
+				/* show icon */
+				$(".m-title").find(".dp").fadeOut(1000);
+				$(".m-title").find(".fingerprint").find("img").fadeIn(1000);
+				/* and swip to the next page */
+				setTimeout(function() {
+					swiper.slideNext(false);
+				}, 2000);
+				/* allow to scroll */
+				swiper.enableMousewheelControl();
 	});
 }
 /*var time=0;

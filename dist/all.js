@@ -1,120 +1,3 @@
-;(function(win, lib) {
-    var doc = win.document;
-    var docEl = doc.documentElement;
-    var metaEl = doc.querySelector('meta[name="viewport"]');
-    var flexibleEl = doc.querySelector('meta[name="flexible"]');
-    var dpr = 0;
-    var scale = 0;
-    var tid;
-    var flexible = lib.flexible || (lib.flexible = {});
-    
-    if (metaEl) {
-        console.warn('将根据已有的meta标签来设置缩放比例');
-        var match = metaEl.getAttribute('content').match(/initial\-scale=([\d\.]+)/);
-        if (match) {
-            scale = parseFloat(match[1]);
-            dpr = parseInt(1 / scale);
-        }
-    } else if (flexibleEl) {
-        var content = flexibleEl.getAttribute('content');
-        if (content) {
-            var initialDpr = content.match(/initial\-dpr=([\d\.]+)/);
-            var maximumDpr = content.match(/maximum\-dpr=([\d\.]+)/);
-            if (initialDpr) {
-                dpr = parseFloat(initialDpr[1]);
-                scale = parseFloat((1 / dpr).toFixed(2));    
-            }
-            if (maximumDpr) {
-                dpr = parseFloat(maximumDpr[1]);
-                scale = parseFloat((1 / dpr).toFixed(2));    
-            }
-        }
-    }
-
-    if (!dpr && !scale) {
-        var isAndroid = win.navigator.appVersion.match(/android/gi);
-        var isIPhone = win.navigator.appVersion.match(/iphone/gi);
-        var devicePixelRatio = win.devicePixelRatio;
-        if (isIPhone) {
-            // iOS下，对于2和3的屏，用2倍的方案，其余的用1倍方案
-            if (devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {                
-                dpr = 3;
-            } else if (devicePixelRatio >= 2 && (!dpr || dpr >= 2)){
-                dpr = 2;
-            } else {
-                dpr = 1;
-            }
-        } else {
-            // 其他设备下，仍旧使用1倍的方案
-            dpr = 1;
-        }
-        scale = 1 / dpr;
-    }
-
-    docEl.setAttribute('data-dpr', dpr);
-    if (!metaEl) {
-        metaEl = doc.createElement('meta');
-        metaEl.setAttribute('name', 'viewport');
-        metaEl.setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
-        if (docEl.firstElementChild) {
-            docEl.firstElementChild.appendChild(metaEl);
-        } else {
-            var wrap = doc.createElement('div');
-            wrap.appendChild(metaEl);
-            doc.write(wrap.innerHTML);
-        }
-    }
-
-    function refreshRem(){
-        var width = docEl.getBoundingClientRect().width;
-        if (width / dpr > 540) {
-            width = 540 * dpr;
-        }
-        var rem = width / 10;
-        docEl.style.fontSize = rem + 'px';
-        flexible.rem = win.rem = rem;
-    }
-
-    win.addEventListener('resize', function() {
-        clearTimeout(tid);
-        tid = setTimeout(refreshRem, 300);
-    }, false);
-    win.addEventListener('pageshow', function(e) {
-        if (e.persisted) {
-            clearTimeout(tid);
-            tid = setTimeout(refreshRem, 300);
-        }
-    }, false);
-
-    if (doc.readyState === 'complete') {
-        doc.body.style.fontSize = 12 * dpr + 'px';
-    } else {
-        doc.addEventListener('DOMContentLoaded', function(e) {
-            doc.body.style.fontSize = 12 * dpr + 'px';
-        }, false);
-    }
-    
-
-    refreshRem();
-
-    flexible.dpr = win.dpr = dpr;
-    flexible.refreshRem = refreshRem;
-    flexible.rem2px = function(d) {
-        var val = parseFloat(d) * this.rem;
-        if (typeof d === 'string' && d.match(/rem$/)) {
-            val += 'px';
-        }
-        return val;
-    }
-    flexible.px2rem = function(d) {
-        var val = parseFloat(d) / this.rem;
-        if (typeof d === 'string' && d.match(/px$/)) {
-            val += 'rem';
-        }
-        return val;
-    }
-
-})(window, window['lib'] || (window['lib'] = {}));
 /* ==================================================
 <| $(document).ready
 ================================================== */
@@ -315,17 +198,14 @@ function initializeMenu(menu, list) {
 	var options = menu.find("p");
 	var option = options.first(); //option = $(options[1]);
 	option.addClass("active");
-	/* set event */
+	/* bind event */
 	menu.attr("tabindex", 0);
 	menu.focus();
-	menu.bind("keydown", function(event) {
+	$(document).bind("keydown", function(event) {
 		scrollEffect(menu, event);
 	});
 	/* bind event */
-	menu.bind("click", function(event) {
-		console.log("clock");
-	});
-	menu.bind("mouseover", function() {
+	/*menu.bind("mouseover", function() {
 		menu.unbind("keydown");
 		menu.bind("keydown", function(event) {
 			scrollEffect(menu, event);
@@ -333,7 +213,7 @@ function initializeMenu(menu, list) {
 	});
 	menu.bind("mouseout", function() {
 		menu.unbind("keydown");
-	});
+	});*/
 }
 /* ==================================================
 <| scrollEffect
@@ -341,7 +221,7 @@ function initializeMenu(menu, list) {
 function scrollEffect(menu, event) {
 	/* initialize */
 	var key = event.which;
-	var rate = 76+4;
+	var rate = 1.9+0.1;
 	var options = menu.find("p");
 	var option = options.find(".active");
 	var index = menu.attr("index");
@@ -351,23 +231,29 @@ function scrollEffect(menu, event) {
 	case 40:
 		if (index >= 1) {
 			now --;
-			menu.animate({marginTop: '+=' + rate + 'px'});
+			menu.animate({marginTop: '+=' + rate + 'rem'});
+			break;
+		} else {
+			return;
 		}
-		break;
 	case 38:
 		if (index < 4-1) {
 			now ++;
-			menu.animate({marginTop: '-=' + rate + 'px'});
+			menu.animate({marginTop: '-=' + rate + 'rem'});
+			break;
+		} else {
+			return;
 		}
-		break;
+	default:
+		return;
 	}
 	/* set animation */
 	var css = {
-		fontSize: '40px',
+		fontSize: '1.0rem',
 		color: '#A0A0A0'
 	};
 	var cssActive = {
-		fontSize: '56px',
+		fontSize: '1.4rem',
 		color: '#00A0E9'
 	}
 	$(options[index]).animate(css);
@@ -401,7 +287,7 @@ function initializePageTitle() {
 		/* set timer */
 		printing = setInterval(function() {
 			timer ++;
-			if (timer == 2) {
+			if (timer == 1) {
 				/* clear timer */
 				timer = 0;
 				clearInterval(printing);
@@ -421,8 +307,19 @@ function initializePageTitle() {
 	/* if not keep printing */
 	button.mouseup(function() {
 		/* clear timer */
+		console.log("mouseup");
 		timer = 0;
 		clearInterval(printing);
+		/* DEBUG */
+				/* show icon */
+				$(".m-title").find(".dp").fadeOut(1000);
+				$(".m-title").find(".fingerprint").find("img").fadeIn(1000);
+				/* and swip to the next page */
+				setTimeout(function() {
+					swiper.slideNext(false);
+				}, 2000);
+				/* allow to scroll */
+				swiper.enableMousewheelControl();
 	});
 }
 /*var time=0;
