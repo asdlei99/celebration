@@ -1,82 +1,85 @@
 /* ==================================================
 <| history
 ================================================== */
+
 .m-history {
-	width: 100%;
-	/* ==============================================
+    width: 100%;
+    /* ==============================================
 	<| mixin
 	============================================== */
-	@import "mixin.scss";
-	/* ==============================================
+    @import "mixin.scss";
+    /* ==============================================
 	<| header
 	============================================== */
-	.header {
-		@include div-border;
-		height: 1.0rem;
-	}
-	/* ==============================================
+    .header {
+        @include div-border;
+        height: 1.0rem;
+    }
+    /* ==============================================
 	<| media
 	============================================== */
-	$rate: 200;
-	@media screen and (min-width: 16.0rem) {
-		$rate: 1;
-	}
-	@media screen and (max-width: 16.0rem) {
-		$rate: (10 / 18.75);
-	}
-	/* ==============================================
+    $rate: 200;
+    @media screen and (min-width: 16.0rem) {
+        $rate: 1;
+    }
+    @media screen and (max-width: 16.0rem) {
+        $rate: (10 / 18.75);
+    }
+    /* ==============================================
 	<| page-top
 	============================================== */
-	.page-top {
-		width: 100%;
-		height: (7.5rem - 2.0rem) * $rate;
-		padding-top: 1.0rem;
-		background: center bottom url("imgs/timeline-top.png") no-repeat;
-		background-size: contain;
-		overflow: hidden;
-		/* title */
-		.title {
-			display: block;
-			width: 8.0rem * $rate;
-			height: 1.0rem * $rate;
-			margin: 0 auto;
-			text-align: center;
-			font-size: 0.9rem * $rate;
-			color: #000;
-		}
-		/* music */
-		.music {
-			float: right;
-			margin-top: 1.4rem - 2.0rem - (1.0rem * $rate);
-			margin-right: 0.7rem;
-		}
-		/* title-dialog */
-		.title-dialog {
-			$box-color: #138DFF;
-			position: relative;
-			z-index: 1;
-			width: 100%;
-			height: 3.2rem * $rate;
-			margin-top: 0.6rem * $rate;
-			.arrow {
-				@include arrow(1, 0.675rem * $rate, $box-color);
-				margin: 0 auto;
-			}
-			.box {
-				width: 10.0rem * $rate;
-				height: 2.5rem * $rate;
-				margin: 0 auto;
-				text-align: center;
-				line-height: 2.7rem * $rate;
-				font-size: 1.5rem * $rate;
-				color: #FFF;
-				background-color: $box-color;
-				border-radius: 0.375rem * $rate;
-				box-shadow: 0.075rem * $rate 0.075rem * $rate 0.25rem * $rate #888888;
-			}
-		}
-		/* title-dialog media */
-		/*@media screen and (min-width: 21.6rem) {
+    .page-top {
+        width: 100%;
+        height: (7.5rem - 2.0rem) * $rate;
+        padding-top: 1.0rem;
+        background: center bottom url("imgs/timeline-top.png") no-repeat;
+        background-size: contain;
+        overflow: hidden;
+        /* title */
+        .title {
+            display: block;
+            width: 8.0rem * $rate;
+            height: 1.0rem * $rate;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 0.9rem * $rate;
+            color: #000;
+        }
+        /* music */
+        .music {
+            float: right;
+            margin-top: 1.4rem - 2.0rem - (1.0rem * $rate);
+            margin-right: 0.7rem;
+        }
+        /* title-dialog */
+        .title-dialog {
+            $box-color: #138DFF;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 3.2rem * $rate;
+            margin-top: 0.6rem * $rate;
+            .arrow {
+                @include arrow(1,
+                0.675rem * $rate,
+                $box-color);
+                margin: 0 auto;
+            }
+            .box {
+                width: 10.0rem * $rate;
+                height: 2.5rem * $rate;
+                margin: 0 auto;
+                text-align: center;
+                line-height: 2.7rem * $rate;
+                font-size: 1.5rem * $rate;
+                color: #FFF;
+                background-color: $box-color;
+                border-radius: 0.375rem * $rate;
+                box-shadow: 0.075rem * $rate 0.075rem * $rate 0.25rem * $rate #888888;
+            }
+        }
+        /* title-dialog media */
+        /*@media screen and (min-width: 21.6rem) {
 			.title-dialog {
 				.box {
 					width: 50%;
@@ -87,132 +90,132 @@
 				}
 			}
 		}*/
-		/* timeline-top */
-		.timeline-top {
-			position: relative;
-			z-index: 0;
-			width: 100%;
-			height: 2.5rem * $rate;
-			text-align: center;
-		}
-	}
-	/* ==============================================
+        /* timeline-top */
+        .timeline-top {
+            position: relative;
+            z-index: 0;
+            width: 100%;
+            height: 2.5rem * $rate;
+            text-align: center;
+        }
+    }
+    /* ==============================================
 	<| timeline
 	============================================== */
-	.timeline {
-		width: 100%;
-		height: 80.0rem * $rate;
-		background: center top url("imgs/timeline.png") no-repeat;
-		background-size: contain;
-		/* dialog */
-		.dialog {
-			position: relative;
-			margin-left: 50%;
-			text-align: center;
-			overflow: hidden;
-			p {
-				margin: 0.18rem * $rate;
-				font-size: 0.6rem * $rate;
-				span {
-					font-weight: 600;
-				}
-			}
-			.time {
-				font-size: 0.45rem * $rate;
-				margin-bottom: 0.35rem * $rate;
-			}
-		}
-		/* dialog bgs */
-		@for $i from 1 to 11 {
-			.d-#{$i} {
-				background: left url("imgs/dialog (" + $i + ").png") no-repeat;
-				background-size: contain;
-			}
-		}
-		/* dialog settings */
-		.dialog.d-1 {
-			width: 5.95rem * $rate;
-			height: 5.425rem * $rate;
-			top: 1.95rem * $rate;
-			left: 1.3rem * $rate;
-			padding-left: 0.2rem * $rate;
-		}
-		.dialog.d-2 {
-			width: 11.5rem * $rate;
-			height: 4.475rem * $rate;
-			top: 5.0rem * $rate;
-			left: -4.25rem * $rate;
-			padding-left: 0.35rem * $rate;
-		}
-		.dialog.d-3 {
-			width: 11.5rem * $rate;
-			height: 4.55rem * $rate;
-			top: 5.45rem * $rate;
-			left: -4.25rem * $rate;
-			padding-left: 0.35rem * $rate;
-		}
-		.dialog.d-4 {
-			width: 6.225rem * $rate;
-			height: 7.075rem * $rate;
-			top: 5.95rem * $rate;
-			left: 1.025rem * $rate;
-		}
-		.dialog.d-5 {
-			width: 7.05rem * $rate;
-			height: 8.45rem * $rate;
-			top: 4.3rem * $rate;
-			left: -7.225rem * $rate;
-			padding-top: 1.2rem * $rate;
-			.time {
-				margin-left: -1.8rem * $rate;
-			}
-		}
-		.dialog.d-6 {
-			width: 11.975rem * $rate;
-			height: 5.775rem * $rate;
-			top: 5.6rem * $rate;
-			left: -7.25rem * $rate;
-			p {
-				margin-left: -0.25rem * $rate;
-			}
-		}
-		.dialog.d-7 {
-			width: 9.95rem * $rate;
-			height: 5.625rem * $rate;
-			top: 7.1rem * $rate;
-			left: -7.25rem * $rate;
-			p {
-				margin-left: -0.4rem * $rate;
-			}
-		}
-		.dialog.d-8 {
-			width: 5.025rem * $rate;
-			height: 8.4rem * $rate;
-			top: 9.5rem * $rate;
-			left: -6.25rem * $rate;
-			padding-left: 0.1rem * $rate;
-		}
-		.dialog.d-9 {
-			width: 6.375rem * $rate;
-			height: 7.8rem * $rate;
-			top: 1.2rem * $rate;
-			left: 0.85rem * $rate;
-			padding-top: 1.0rem * $rate;
-			padding-left: 0.2rem * $rate;
-		}
-		.dialog.d-10 {
-			width: 6.5rem * $rate;
-			height: 6.2rem * $rate;
-			top: 6.55rem * $rate;
-			left: -7.25rem * $rate;
-			padding-top: 1.2rem * $rate;
-		}
-	}
-	/* ==============================================
+    .timeline {
+        width: 100%;
+        height: 80.0rem * $rate;
+        background: center top url("imgs/timeline.png") no-repeat;
+        background-size: contain;
+        /* dialog */
+        .dialog {
+            position: relative;
+            margin-left: 50%;
+            text-align: center;
+            overflow: hidden;
+            p {
+                margin: 0.18rem * $rate;
+                font-size: 0.6rem * $rate;
+                span {
+                    font-weight: 600;
+                }
+            }
+            .time {
+                font-size: 0.45rem * $rate;
+                margin-bottom: 0.35rem * $rate;
+            }
+        }
+        /* dialog bgs */
+        @for $i from 1 to 11 {
+            .d-#{$i} {
+                background: left url("imgs/dialog (" + $i + ").png") no-repeat;
+                background-size: contain;
+            }
+        }
+        /* dialog settings */
+        .dialog.d-1 {
+            width: 5.95rem * $rate;
+            height: 5.425rem * $rate;
+            top: 1.95rem * $rate;
+            left: 1.3rem * $rate;
+            padding-left: 0.2rem * $rate;
+        }
+        .dialog.d-2 {
+            width: 11.5rem * $rate;
+            height: 4.475rem * $rate;
+            top: 5.0rem * $rate;
+            left: -4.25rem * $rate;
+            padding-left: 0.35rem * $rate;
+        }
+        .dialog.d-3 {
+            width: 11.5rem * $rate;
+            height: 4.55rem * $rate;
+            top: 5.45rem * $rate;
+            left: -4.25rem * $rate;
+            padding-left: 0.35rem * $rate;
+        }
+        .dialog.d-4 {
+            width: 6.225rem * $rate;
+            height: 7.075rem * $rate;
+            top: 5.95rem * $rate;
+            left: 1.025rem * $rate;
+        }
+        .dialog.d-5 {
+            width: 7.05rem * $rate;
+            height: 8.45rem * $rate;
+            top: 4.3rem * $rate;
+            left: -7.225rem * $rate;
+            padding-top: 1.2rem * $rate;
+            .time {
+                margin-left: -1.8rem * $rate;
+            }
+        }
+        .dialog.d-6 {
+            width: 11.975rem * $rate;
+            height: 5.775rem * $rate;
+            top: 5.6rem * $rate;
+            left: -7.25rem * $rate;
+            p {
+                margin-left: -0.25rem * $rate;
+            }
+        }
+        .dialog.d-7 {
+            width: 9.95rem * $rate;
+            height: 5.625rem * $rate;
+            top: 7.1rem * $rate;
+            left: -7.25rem * $rate;
+            p {
+                margin-left: -0.4rem * $rate;
+            }
+        }
+        .dialog.d-8 {
+            width: 5.025rem * $rate;
+            height: 8.4rem * $rate;
+            top: 9.5rem * $rate;
+            left: -6.25rem * $rate;
+            padding-left: 0.1rem * $rate;
+        }
+        .dialog.d-9 {
+            width: 6.375rem * $rate;
+            height: 7.8rem * $rate;
+            top: 1.2rem * $rate;
+            left: 0.85rem * $rate;
+            padding-top: 1.0rem * $rate;
+            padding-left: 0.2rem * $rate;
+        }
+        .dialog.d-10 {
+            width: 6.5rem * $rate;
+            height: 6.2rem * $rate;
+            top: 6.55rem * $rate;
+            left: -7.25rem * $rate;
+            padding-top: 1.2rem * $rate;
+        }
+    }
+    /* ==============================================
 	<| footer
 	============================================== */
-	.footer {
-		@include div-border;
-		height: 2.0rem;
-	}
+    .footer {
+        @include div-border;
+        height: 2.0rem;
+    }
 }
