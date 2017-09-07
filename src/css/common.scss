@@ -1,7 +1,25 @@
-.swiper-slide{
-  background: url(./imgs/bg.png) repeat-y 0 0;
-  background-size: 100%;
+/* ==================================================
+<| mixin
+================================================== */
+@import "mixin.scss";
+/* ==================================================
+<| swiper
+================================================== */
+.swiper-slide {
+	background: url(./imgs/bg.png) repeat-y 0 0;
+	background-size: 100%;
 }
-.icon{
-  display: inline-block;
+.icon {
+	display: inline-block;
+}
+/* ==================================================
+<| common-divs
+================================================== */
+.header {
+	@include div-border;
+	height: 1.0rem;
+}
+.footer {
+	@include div-border;
+	height: 2.5rem;
 }

@@ -118,6 +118,135 @@
 /* ==================================================
 <| $(document).ready
 ================================================== */
+
+ /**
+ *  jQuery Color Animations
+ * @author 愚人码头
+ * 源自：jQuery UI    jquery.effects.core.js
+ *
+ */
+
+;(function(jQuery){
+
+	// 所有颜色样式
+	jQuery.each(['backgroundColor', 'borderBottomColor', 'borderLeftColor', 'borderRightColor', 'borderTopColor', 'color', 'outlineColor'], function(i,attr){
+		jQuery.fx.step[attr] = function(fx){
+			if ( fx.state == 0 ) {
+				fx.start = getColor( fx.elem, attr );
+				fx.end = getRGB( fx.end );
+			}
+
+			fx.elem.style[attr] = "rgb(" + [
+				Math.max(Math.min( parseInt((fx.pos * (fx.end[0] - fx.start[0])) + fx.start[0]), 255), 0),
+				Math.max(Math.min( parseInt((fx.pos * (fx.end[1] - fx.start[1])) + fx.start[1]), 255), 0),
+				Math.max(Math.min( parseInt((fx.pos * (fx.end[2] - fx.start[2])) + fx.start[2]), 255), 0)
+			].join(",") + ")";
+		}
+	});
+
+	// Color Conversion functions from highlightFade
+	// By Blair Mitchelmore
+	// http://jquery.offput.ca/highlightFade/
+    //一个JavaScript 数组，其中包含 0和255之间的三个数字， (ie [255,255,255]).
+    //An RGB 'function call syntax' string. either interger or percentage float form. (ie rgb(255,255,255) or rgb(100%,100%,100%))
+    //An RGB hex value. Either short or long form. (ie #FFF or #FFFFFF)
+    //A W3C standard colour name string as defined at W3Schools. (ie 'white', 'blue', 'red', 'black', et. al)
+
+	// Parse strings looking for color tuples [255,255,255]
+	function getRGB(color) {
+		var result;
+
+		// 一个JavaScript 数组，其中包含 0和255之间的三个数字，例如： [255,255,255]
+		if ( color && color.constructor == Array && color.length == 3 )
+			return color;
+
+		// Look for rgb(num,num,num)
+		if (result = /rgb\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*\)/.exec(color))
+			return [parseInt(result[1]), parseInt(result[2]), parseInt(result[3])];
+
+		// Look for rgb(num%,num%,num%)
+		if (result = /rgb\(\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*\)/.exec(color))
+			return [parseFloat(result[1])*2.55, parseFloat(result[2])*2.55, parseFloat(result[3])*2.55];
+
+		// Look for #a0b1c2
+		if (result = /#([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})/.exec(color))
+			return [parseInt(result[1],16), parseInt(result[2],16), parseInt(result[3],16)];
+
+		// Look for #fff
+		if (result = /#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])/.exec(color))
+			return [parseInt(result[1]+result[1],16), parseInt(result[2]+result[2],16), parseInt(result[3]+result[3],16)];
+
+		// Otherwise, we're most likely dealing with a named color
+		return colors[jQuery.trim(color).toLowerCase()];
+	}
+
+	function getColor(elem, attr) {
+		var color;
+
+		do {
+			color = jQuery.curCSS(elem, attr);
+
+			// Keep going until we find an element that has color, or we hit the body
+			if ( color != '' && color != 'transparent' || jQuery.nodeName(elem, "body") )
+				break;
+
+			attr = "backgroundColor";
+		} while ( elem = elem.parentNode );
+
+		return getRGB(color);
+	};
+
+	// Some named colors to work with
+	// From Interface by Stefan Petre
+	// http://interface.eyecon.ro/
+
+	var colors = {
+		aqua:[0,255,255],
+		azure:[240,255,255],
+		beige:[245,245,220],
+		black:[0,0,0],
+		blue:[0,0,255],
+		brown:[165,42,42],
+		cyan:[0,255,255],
+		darkblue:[0,0,139],
+		darkcyan:[0,139,139],
+		darkgrey:[169,169,169],
+		darkgreen:[0,100,0],
+		darkkhaki:[189,183,107],
+		darkmagenta:[139,0,139],
+		darkolivegreen:[85,107,47],
+		darkorange:[255,140,0],
+		darkorchid:[153,50,204],
+		darkred:[139,0,0],
+		darksalmon:[233,150,122],
+		darkviolet:[148,0,211],
+		fuchsia:[255,0,255],
+		gold:[255,215,0],
+		green:[0,128,0],
+		indigo:[75,0,130],
+		khaki:[240,230,140],
+		lightblue:[173,216,230],
+		lightcyan:[224,255,255],
+		lightgreen:[144,238,144],
+		lightgrey:[211,211,211],
+		lightpink:[255,182,193],
+		lightyellow:[255,255,224],
+		lime:[0,255,0],
+		magenta:[255,0,255],
+		maroon:[128,0,0],
+		navy:[0,0,128],
+		olive:[128,128,0],
+		orange:[255,165,0],
+		pink:[255,192,203],
+		purple:[128,0,128],
+		violet:[128,0,128],
+		red:[255,0,0],
+		silver:[192,192,192],
+		white:[255,255,255],
+		yellow:[255,255,0]
+	};
+
+})(jQuery);
 function showQR() {
     $("#QRcode").css("display", "block");
 }
@@ -125,68 +254,140 @@ $("#QRcode").click(function(e) {
     if ($(e.target).attr("id") == "hideQR")
         $("#QRcode").css("display", "none");
 })
-window.addEventListener('load', function(){
-    var swiper = new Swiper('.swiper-container', {
-    direction: 'vertical',
-    slidesPerView: 'auto',
-    mousewheelControl: true,
-    });
-    var startScroll, touchStart, touchCurrent;
-    swiper.slides.on('touchstart', function (e) {
-        startScroll = this.scrollTop;
-        touchStart = e.targetTouches[0].pageY;
-    }, true);
-    swiper.slides.on('touchmove', function (e) {
-        touchCurrent = e.targetTouches[0].pageY;
-        var touchesDiff = touchCurrent - touchStart;
-        var slide = this;
-        var onlyScrolling = 
-                ( slide.scrollHeight > slide.offsetHeight ) && //allow only when slide is scrollable
-                (
-                    ( touchesDiff < 0 && startScroll === 0 ) || //start from top edge to scroll bottom
-                    ( touchesDiff > 0 && startScroll === ( slide.scrollHeight - slide.offsetHeight ) ) || //start from bottom edge to scroll top
-                    ( startScroll > 0 && startScroll < ( slide.scrollHeight - slide.offsetHeight ) ) //start from the middle
-                );
-        if (onlyScrolling) {
-            e.stopPropagation();
-        }
-    }, true);
-    // 横屏监听
-    var updateOrientation = function(){
-    if(window.orientation=='-90' || window.orientation=='90'){
-        console.log('为了更好的体验，请将手机/平板竖过来！');      
-    };
-    }
-    window.onorientationchange = updateOrientation;
+/* ==================================================
+<| swiper
+================================================== */
+var swiper;
+window.addEventListener('load', function() {
+	swiper = new Swiper('.swiper-container', {
+		direction: 'vertical',
+		slidesPerView: 'auto',
+		mousewheelControl: true,
+	});
+	var startScroll, touchStart, touchCurrent;
+	swiper.slides.on('touchstart', function(e) {
+		startScroll = this.scrollTop;
+		touchStart = e.targetTouches[0].pageY;
+	}, true);
+	swiper.slides.on('touchmove', function(e) {
+		touchCurrent = e.targetTouches[0].pageY;
+		var touchesDiff = touchCurrent - touchStart;
+		var slide = this;
+		var onlyScrolling = 
+				( slide.scrollHeight > slide.offsetHeight ) && //allow only when slide is scrollable
+				(
+					( touchesDiff < 0 && startScroll === 0 ) || //start from top edge to scroll bottom
+					( touchesDiff > 0 && startScroll === ( slide.scrollHeight - slide.offsetHeight ) ) || //start from bottom edge to scroll top
+					( startScroll > 0 && startScroll < ( slide.scrollHeight - slide.offsetHeight ) ) //start from the middle
+				);
+		if (onlyScrolling) {
+			e.stopPropagation();
+		}
+	}, true);
+	// 横屏监听
+	var updateOrientation = function() {
+	if(window.orientation=='-90' || window.orientation=='90'){
+		console.log('为了更好的体验，请将手机/平板竖过来！');      
+	};
+	}
+	window.onorientationchange = updateOrientation;
 });
 /* ==================================================
 <| $(document).ready
 ================================================== */
 $(document).ready(function() {
-	initializePageProduct();
+    initializePageProduct();
 });
 /* ==================================================
 <| initializePageProduct
 ================================================== */
 function initializePageProduct() {
-	/* yearlist */
-	var yearlist = $(".m-product").find(".yearlist");
-	var menu = yearlist.find(".menu").find(".options");
-	var list = ["2017", "2016", "2015", "2002"];
-	initializeMenu(menu, list);
+    /* yearlist */
+    var yearlist = $(".m-product").find(".yearlist");
+    var menu = yearlist.find(".menu").find(".options");
+    var list = ["2017", "2016", "2015", "2002"];
+    initializeMenu(menu, list);
 }
 /* ==================================================
 <| initializeMenu
 ================================================== */
 function initializeMenu(menu, list) {
-	list.forEach(function(value) {
-		var option = $("<p></p>").text(value);
-		menu.append(option);
-	});
-	var options = menu.find("p");
-	var option = options.first();
-	option = $(options[1]);
-	option.addClass("active");
+    /* options */
+    list.forEach(function(value) {
+        var option = $("<p></p>").text(value);
+        menu.append(option);
+    });
+    /* set active */
+    menu.attr("index", 0);
+    var options = menu.find("p");
+    var option = options.first(); //option = $(options[1]);
+    option.addClass("active");
+    /* bind event */
+    menu.attr("tabindex", 0);
+    menu.focus();
+    $(document).bind("keydown", function(event) {
+        scrollEffect(menu, event);
+    });
+    /* bind event */
+    /*menu.bind("mouseover", function() {
+    	menu.unbind("keydown");
+    	menu.bind("keydown", function(event) {
+    		scrollEffect(menu, event);
+    	});
+    });
+    menu.bind("mouseout", function() {
+    	menu.unbind("keydown");
+    });*/
+}
+/* ==================================================
+<| scrollEffect
+================================================== */
+function scrollEffect(menu, event) {
+    /* initialize */
+    var key = event.which;
+    var rate = 1.9 + 0.1;
+    var options = menu.find("p");
+    var option = options.find(".active");
+    var index = menu.attr("index");
+    var now = index;
+    /* keydown: 37-left, 38-up, 39-right, 40-down */
+    switch (key) {
+        case 40:
+            if (index >= 1) {
+                now--;
+                menu.animate({ marginTop: '+=' + rate + 'rem' });
+                break;
+            } else {
+                return;
+            }
+        case 38:
+            if (index < 4 - 1) {
+                now++;
+                menu.animate({ marginTop: '-=' + rate + 'rem' });
+                break;
+            } else {
+                return;
+            }
+        default:
+            return;
+    }
+    /* set animation */
+    var css = {
+        fontSize: '1.0rem',
+        color: '#A0A0A0'
+    };
+    var cssActive = {
+        fontSize: '1.4rem',
+        color: '#00A0E9'
+    }
+    $(options[index]).animate(css);
+    $(options[now]).animate(cssActive);
+    /* set active index after the animation */
+    setTimeout(function() {
+        $(options[index]).removeClass("active");
+        $(options[now]).addClass("active");
+    }, 500);
+    menu.attr("index", now);
 }
 var width_a = $(window).width() + "px";
 $(".window li img").css("width",width_a);
@@ -247,48 +448,59 @@ $.ajax({
 /* ==================================================
 <| $(document).ready
 ================================================== */
-window.addEventListener('load', function() {//$(document).ready(function() {
-	initializePageTitle();
-})
-/* ==================================================
-<| initializePageTitle
-================================================== */
+window.addEventListener('load', function() { //$(document).ready(function() {
+        initializePageTitle();
+    })
+    /* ==================================================
+    <| initializePageTitle
+    ================================================== */
 function initializePageTitle() {
-	/* no scrolling */
-	swiper.disableMousewheelControl();
-	//swiper.disableKeyboardControl();
-	/* fingerprinting args */
-	var timer = 0;
-	var printing;
-	var button = $(".m-title").find(".mark");
-	/* if keep printing */
-	button.mousedown(function() { /* mousedown对电脑网页正常，手机页面有奇怪的效果(?) */
-		/* set timer */
-		printing = setInterval(function() {
-			timer ++;
-			if (timer == 2) {
-				/* clear timer */
-				timer = 0;
-				clearInterval(printing);
-				/* show icon */
-				$(".m-title").find(".dp").fadeOut(1000);
-				$(".m-title").find(".fingerprint").find("img").fadeIn(1000);
-				/* and swip to the next page */
-				setTimeout(function() {
-					swiper.slideNext(false);
-				}, 2000);
-				/* allow to scroll */
-				swiper.enableMousewheelControl();
-				//swiper.enableKeyboardControl();
-			}
-		}, 500);
-	});
-	/* if not keep printing */
-	button.mouseup(function() {
-		/* clear timer */
-		timer = 0;
-		clearInterval(printing);
-	});
+    /* no scrolling */
+    swiper.disableMousewheelControl();
+    //swiper.disableKeyboardControl();
+    /* fingerprinting args */
+    var timer = 0;
+    var printing;
+    var button = $(".m-title").find(".mark");
+    /* if keep printing */
+    button.mousedown(function() { /* mousedown对电脑网页正常，手机页面有奇怪的效果(?) */
+        /* set timer */
+        printing = setInterval(function() {
+            timer++;
+            if (timer == 1) {
+                /* clear timer */
+                timer = 0;
+                clearInterval(printing);
+                /* show icon */
+                $(".m-title").find(".dp").fadeOut(1000);
+                $(".m-title").find(".fingerprint").find("img").fadeIn(1000);
+                /* and swip to the next page */
+                setTimeout(function() {
+                    swiper.slideNext(false);
+                }, 2000);
+                /* allow to scroll */
+                swiper.enableMousewheelControl();
+                //swiper.enableKeyboardControl();
+            }
+        }, 500);
+    });
+    /* if not keep printing */
+    button.mouseup(function() {
+        /* clear timer */
+        console.log("mouseup");
+        timer = 0;
+        clearInterval(printing);
+        /* DEBUG */
+        /* show icon */
+        $(".m-title").find(".dp").fadeOut(1000);
+        $(".m-title").find(".fingerprint").find("img").fadeIn(1000);
+        /* and swip to the next page */
+        setTimeout(function() {
+            swiper.slideNext(false);
+        }, 2000);
+        /* allow to scroll */
+        swiper.enableMousewheelControl();
+    });
 }
 /*var time=0;
 var p1=document.getElementById("P1");
@@ -307,7 +519,6 @@ p1.addEventListener("click",function(){
 	console.log("111");
 });
 */
-
 var mousePressed = false;
 var lastX, lastY;
 var ctx;
@@ -387,7 +598,8 @@ function UploadPic() {
 }
 
 InitThis();
-window.addEventListener('load', function(){
+window.addEventListener('load', function() {
+  return;
   var canvas;
   var ctx;
   var sentences = [

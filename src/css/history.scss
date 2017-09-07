@@ -1,225 +1,221 @@
 /* ==================================================
 <| history
 ================================================== */
+
 .m-history {
-	min-width: 768px;
-	/* ==============================================
+    width: 100%;
+    /* ==============================================
 	<| mixin
 	============================================== */
-	@import "mixin.scss";
-	/* ==============================================
+    @import "mixin.scss";
+    /* ==============================================
 	<| header
 	============================================== */
-	.header {
-		@include div-border;
-		height: 40px;
-	}
-	/* ==============================================
+    .header {
+        @include div-border;
+        height: 1.0rem;
+    }
+    /* ==============================================
+	<| media
+	============================================== */
+    $rate: 200;
+    @media screen and (min-width: 16.0rem) {
+        $rate: 1;
+    }
+    @media screen and (max-width: 16.0rem) {
+        $rate: (10 / 18.75);
+    }
+    /* ==============================================
 	<| page-top
 	============================================== */
-	.page-top {
-		width: 100%;
-		height: 300px - 80px;
-		padding-top: 80px;
-		/* title */
-		.title {
-			display: block;
-			width: 320px;
-			height: 40px;
-			margin: 0 auto;
-			text-align: center;
-			font-size: 36px;
-			color: #000;
-		}
-		/* music */
-		.music {
-			float: right;
-			margin-top: 56px - 80px - 40px;
-			margin-right: 28px;
-		}
-		/* title-dialog */
-		.title-dialog {
-			$box-color: #138DFF;
-			position: relative;
-			width: 100%;
-			height: 128px;
-			margin-top: 24px;
-			z-index: 1;
-			.arrow {
-				@include arrow(1, 27px, $box-color);
-				margin: 0 auto;
-			}
-			.box {
-				width: 50%;
-				max-width: 468px;
-				height: 108px;
-				margin: 0 auto;
-				text-align: center;
-				line-height: 108px;
-				font-size: 64px;
-				color: #FFF;
-				background-color: $box-color;
-				border-radius: 15px;
-				box-shadow: 3px 3px 10px #888888;
-			}
-		}
-		/* title-dialog media */
-		@media screen and (min-width: 864px) {
+    .page-top {
+        width: 100%;
+        height: (7.5rem - 2.0rem) * $rate;
+        padding-top: 1.0rem;
+        background: center bottom url("imgs/timeline-top.png") no-repeat;
+        background-size: contain;
+        overflow: hidden;
+        /* title */
+        .title {
+            display: block;
+            width: 8.0rem * $rate;
+            height: 1.0rem * $rate;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 0.9rem * $rate;
+            color: #000;
+        }
+        /* music */
+        .music {
+            float: right;
+            margin-top: 1.4rem - 2.0rem - (1.0rem * $rate);
+            margin-right: 0.7rem;
+        }
+        /* title-dialog */
+        .title-dialog {
+            $box-color: #138DFF;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 3.2rem * $rate;
+            margin-top: 0.6rem * $rate;
+            .arrow {
+                @include arrow(1,
+                0.675rem * $rate,
+                $box-color);
+                margin: 0 auto;
+            }
+            .box {
+                width: 10.0rem * $rate;
+                height: 2.5rem * $rate;
+                margin: 0 auto;
+                text-align: center;
+                line-height: 2.7rem * $rate;
+                font-size: 1.5rem * $rate;
+                color: #FFF;
+                background-color: $box-color;
+                border-radius: 0.375rem * $rate;
+                box-shadow: 0.075rem * $rate 0.075rem * $rate 0.25rem * $rate #888888;
+            }
+        }
+        /* title-dialog media */
+        /*@media screen and (min-width: 21.6rem) {
 			.title-dialog {
 				.box {
 					width: 50%;
-					max-width: 468px;
-					height: 108px;
-					line-height: 108px;
-					font-size: 64px;
+					max-width: 11.7rem;
+					height: 2.7rem;
+					line-height: 2.7rem;
+					font-size: 1.3rem;
 				}
 			}
-		}
-		/* timeline-top */
-		.timeline-top {
-			position: relative;
-			width: 100%;
-			text-align: center;
-			z-index: 0;
-		}
-	}
-	/* ==============================================
+		}*/
+        /* timeline-top */
+        .timeline-top {
+            position: relative;
+            z-index: 0;
+            width: 100%;
+            height: 2.5rem * $rate;
+            text-align: center;
+        }
+    }
+    /* ==============================================
 	<| timeline
 	============================================== */
-	.timeline {
-		width: 100%;
-		height: 3200px;
-		background: center url("imgs/timeline.png") no-repeat;
-		/* dialog */
-		.dialog {
-			position: relative;
-			margin-left: 50%;
-			text-align: center;
-			overflow: hidden;
-			p {
-				margin: 10px;
-				font-size: 24px;
-				span {
-					font-weight: 600;
-				}
-			}
-			.time {
-				font-size: 18px;
-				margin-bottom: 14px;
-			}
-		}
-		/* dialog bgs */
-		@for $i from 1 to 11 {
-			.d-#{$i} {
-				background: left url("imgs/dialog (" + $i + ").png") no-repeat;
-			}
-		}
-		/* dialog settings */
-		.dialog.d-1 {
-			width: 238px;
-			height: 217px;
-			top: 78px;
-			left: 52px;
-			padding-left: 8px;
-		}
-		.dialog.d-2 {
-			width: 460px;
-			height: 179px;
-			top: 200px;
-			left: -170px;
-			padding-left: 14px;
-		}
-		.dialog.d-3 {
-			width: 460px;
-			height: 182px;
-			top: 218px;
-			left: -170px;
-			padding-left: 14px;
-		}
-		.dialog.d-4 {
-			width: 249px;
-			height: 283px;
-			top: 238px;
-			left: 41px;
-		}
-		.dialog.d-5 {
-			width: 282px;
-			height: 338px;
-			top: 172px;
-			left: -289px;
-			padding-top: 48px;
-			.time {
-				margin-left: -72px;
-			}
-		}
-		.dialog.d-6 {
-			width: 479px;
-			height: 231px;
-			top: 224px;
-			left: -290px;
-			p {
-				margin-left: -10px;
-			}
-		}
-		.dialog.d-7 {
-			width: 398px;
-			height: 225px;
-			top: 284px;
-			left: -290px;
-			p {
-				margin-left: -16px;
-			}
-		}
-		.dialog.d-8 {
-			width: 201px;
-			height: 336px;
-			top: 380px;
-			left: -250px;
-			padding-left: 4px;
-		}
-		.dialog.d-9 {
-			width: 255px;
-			height: 312px;
-			top: 48px;
-			left: 34px;
-			padding-top: 40px;
-			padding-left: 8px;
-		}
-		.dialog.d-10 {
-			width: 260px;
-			height: 248px;
-			top: 262px;
-			left: -290px;
-			padding-top: 48px;
-		}
-	}
-	/* ==============================================
-	<| page-bottom
-	============================================== */
-	.page-bottom {
-		width: 100%;
-		height: 150px;
-		text-align: center;
-		.next-page {
-			width: 450px;
-			height: 80px;
-			text-align: center;
-			font-size: 32px;
-			color: #FFF;
-			background-color: #79828B;
-			border: none;
-			outline: none;
-			border-radius: 10px;
-			&:hover {
-				background-color: #b5b5b5;
-			}
-		}
-	}
-	/* ==============================================
+    .timeline {
+        width: 100%;
+        height: 80.0rem * $rate;
+        background: center top url("imgs/timeline.png") no-repeat;
+        background-size: contain;
+        /* dialog */
+        .dialog {
+            position: relative;
+            margin-left: 50%;
+            text-align: center;
+            overflow: hidden;
+            p {
+                margin: 0.18rem * $rate;
+                font-size: 0.6rem * $rate;
+                span {
+                    font-weight: 600;
+                }
+            }
+            .time {
+                font-size: 0.45rem * $rate;
+                margin-bottom: 0.35rem * $rate;
+            }
+        }
+        /* dialog bgs */
+        @for $i from 1 to 11 {
+            .d-#{$i} {
+                background: left url("imgs/dialog (" + $i + ").png") no-repeat;
+                background-size: contain;
+            }
+        }
+        /* dialog settings */
+        .dialog.d-1 {
+            width: 5.95rem * $rate;
+            height: 5.425rem * $rate;
+            top: 1.95rem * $rate;
+            left: 1.3rem * $rate;
+            padding-left: 0.2rem * $rate;
+        }
+        .dialog.d-2 {
+            width: 11.5rem * $rate;
+            height: 4.475rem * $rate;
+            top: 5.0rem * $rate;
+            left: -4.25rem * $rate;
+            padding-left: 0.35rem * $rate;
+        }
+        .dialog.d-3 {
+            width: 11.5rem * $rate;
+            height: 4.55rem * $rate;
+            top: 5.45rem * $rate;
+            left: -4.25rem * $rate;
+            padding-left: 0.35rem * $rate;
+        }
+        .dialog.d-4 {
+            width: 6.225rem * $rate;
+            height: 7.075rem * $rate;
+            top: 5.95rem * $rate;
+            left: 1.025rem * $rate;
+        }
+        .dialog.d-5 {
+            width: 7.05rem * $rate;
+            height: 8.45rem * $rate;
+            top: 4.3rem * $rate;
+            left: -7.225rem * $rate;
+            padding-top: 1.2rem * $rate;
+            .time {
+                margin-left: -1.8rem * $rate;
+            }
+        }
+        .dialog.d-6 {
+            width: 11.975rem * $rate;
+            height: 5.775rem * $rate;
+            top: 5.6rem * $rate;
+            left: -7.25rem * $rate;
+            p {
+                margin-left: -0.25rem * $rate;
+            }
+        }
+        .dialog.d-7 {
+            width: 9.95rem * $rate;
+            height: 5.625rem * $rate;
+            top: 7.1rem * $rate;
+            left: -7.25rem * $rate;
+            p {
+                margin-left: -0.4rem * $rate;
+            }
+        }
+        .dialog.d-8 {
+            width: 5.025rem * $rate;
+            height: 8.4rem * $rate;
+            top: 9.5rem * $rate;
+            left: -6.25rem * $rate;
+            padding-left: 0.1rem * $rate;
+        }
+        .dialog.d-9 {
+            width: 6.375rem * $rate;
+            height: 7.8rem * $rate;
+            top: 1.2rem * $rate;
+            left: 0.85rem * $rate;
+            padding-top: 1.0rem * $rate;
+            padding-left: 0.2rem * $rate;
+        }
+        .dialog.d-10 {
+            width: 6.5rem * $rate;
+            height: 6.2rem * $rate;
+            top: 6.55rem * $rate;
+            left: -7.25rem * $rate;
+            padding-top: 1.2rem * $rate;
+        }
+    }
+    /* ==============================================
 	<| footer
 	============================================== */
-	.footer {
-		@include div-border;
-		height: 100px;
-	}
+    .footer {
+        @include div-border;
+        height: 2.0rem;
+    }
 }

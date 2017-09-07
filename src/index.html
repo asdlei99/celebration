@@ -1,28 +1,29 @@
+<!-- ==================================================
+<| html
+==================================================  -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="lib/swiper.min.css">
-    <link rel="stylesheet" href="all.css">
-    <link rel="stylesheet" href="sprite.css">
-    <script src="lib/jquery-3.2.1.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="lib/swiper.min.css">
+  <link rel="stylesheet" href="all.css">
+  <link rel="stylesheet" href="sprite.css">
+  <script src = "http://cdn.static.runoob.com/libs/jquery/2.2.1/jquery.min.js"></script>
 </head>
-
 <body onload="InitThis()">
     <div class="swiper-container">
         <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <!--=include ./pages/words.html -->
+            <div class="swiper-slide swiper-no-swiping">
+                  <!--=include ./pages/title.html -->
             </div>
             <div class="swiper-slide">
-                <!--=include ./pages/timeline.html -->
+                  <!--=include ./pages/history.html -->
             </div>
             <div class="swiper-slide">
-                <!--=include ./pages/home.html -->
+                  <!--=include ./pages/product.html -->
             </div>
             <div class="swiper-slide">
                 <!--=include ./pages/money.html -->
@@ -35,9 +36,10 @@
             </div>
         </div>
     </div>
+    <script src="lib/jquery.colorAnimations.js"></script>
     <script src="lib/swiper.min.js"></script>
     <script src="lib/Tween.js"></script>
+    <script src="lib/flexible.debug.js"></script>
     <script src="all.js"></script>
 </body>
-
 </html>
