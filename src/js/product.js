@@ -28,17 +28,14 @@ function initializeMenu(menu, list) {
 	var options = menu.find("p");
 	var option = options.first(); //option = $(options[1]);
 	option.addClass("active");
-	/* set event */
+	/* bind event */
 	menu.attr("tabindex", 0);
 	menu.focus();
-	menu.bind("keydown", function(event) {
+	$(document).bind("keydown", function(event) {
 		scrollEffect(menu, event);
 	});
 	/* bind event */
-	menu.bind("click", function(event) {
-		console.log("clock");
-	});
-	menu.bind("mouseover", function() {
+	/*menu.bind("mouseover", function() {
 		menu.unbind("keydown");
 		menu.bind("keydown", function(event) {
 			scrollEffect(menu, event);
@@ -46,7 +43,7 @@ function initializeMenu(menu, list) {
 	});
 	menu.bind("mouseout", function() {
 		menu.unbind("keydown");
-	});
+	});*/
 }
 /* ==================================================
 <| scrollEffect
@@ -54,7 +51,7 @@ function initializeMenu(menu, list) {
 function scrollEffect(menu, event) {
 	/* initialize */
 	var key = event.which;
-	var rate = 76+4;
+	var rate = 1.9+0.1;
 	var options = menu.find("p");
 	var option = options.find(".active");
 	var index = menu.attr("index");
@@ -64,23 +61,29 @@ function scrollEffect(menu, event) {
 	case 40:
 		if (index >= 1) {
 			now --;
-			menu.animate({marginTop: '+=' + rate + 'px'});
+			menu.animate({marginTop: '+=' + rate + 'rem'});
+			break;
+		} else {
+			return;
 		}
-		break;
 	case 38:
 		if (index < 4-1) {
 			now ++;
-			menu.animate({marginTop: '-=' + rate + 'px'});
+			menu.animate({marginTop: '-=' + rate + 'rem'});
+			break;
+		} else {
+			return;
 		}
-		break;
+	default:
+		return;
 	}
 	/* set animation */
 	var css = {
-		fontSize: '40px',
+		fontSize: '1.0rem',
 		color: '#A0A0A0'
 	};
 	var cssActive = {
-		fontSize: '56px',
+		fontSize: '1.4rem',
 		color: '#00A0E9'
 	}
 	$(options[index]).animate(css);

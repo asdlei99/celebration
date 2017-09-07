@@ -17,9 +17,9 @@
 ================================================== */
 .header {
 	@include div-border;
-	height: 40px;
+	height: 1.0rem;
 }
 .footer {
 	@include div-border;
-	height: 100px;
+	height: 2.5rem;
 }
