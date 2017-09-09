@@ -47,13 +47,37 @@ function initializeMenu(menu, list) {
 	menu.bind("mouseout", function() {
 		menu.unbind("keydown");
 	});
+	var X, Y, startX, startY, lock = false;
+	menu.bind("touchstart", function(event) {
+	    startX = event.originalEvent.changedTouches[0].pageX,
+      startY = event.originalEvent.changedTouches[0].pageY;
+	});
+	menu.bind("touchmove", function(event){
+		event.preventDefault();
+		event.stopPropagation();
+		if(lock) return;
+	  lock = true;
+    var moveEndX = event.originalEvent.changedTouches[0].pageX,
+    		moveEndY = event.originalEvent.changedTouches[0].pageY;
+    X = moveEndX - startX;
+    Y = moveEndY - startY;
+    if (Y > 0) {
+      scrollEffect(menu, event, 40);
+    }
+    if (Y < 0) {
+      scrollEffect(menu, event, 38);
+    }
+	});
+	menu.bind("touchend", function(event){
+		lock = false;
+	});
 }
 /* ==================================================
 <| scrollEffect
 ================================================== */
-function scrollEffect(menu, event) {
+function scrollEffect(menu, event, direction) {
 	/* initialize */
-	var key = event.which;
+	var key = direction || event.which;
 	var rate = 76+4;
 	var options = menu.find("p");
 	var option = options.find(".active");
