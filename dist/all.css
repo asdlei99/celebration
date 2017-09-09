@@ -36,11 +36,25 @@
   background-color: #b5b5b5;
   height: 2.5rem; }
 
+.music {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 32px;
+  animation: rotate 2s infinite linear; }
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }
+
 /* ==================================================
 <| history
 ================================================== */
 .m-history {
   width: 100%;
+  position: relative;
   /* ==============================================
 	<| mixin
 	============================================== */
@@ -83,7 +97,6 @@
     background-size: contain;
     overflow: hidden;
     /* title */
-    /* music */
     /* title-dialog */
     /* title-dialog media */
     /*@media screen and (min-width: 21.6rem) {
@@ -106,10 +119,6 @@
       text-align: center;
       font-size: 0.48rem;
       color: #000; }
-    .m-history .page-top .music {
-      float: right;
-      margin-top: -1.13333rem;
-      margin-right: 0.7rem; }
     .m-history .page-top .title-dialog {
       position: relative;
       z-index: 1;
@@ -285,12 +294,6 @@
   margin-top: 20px;
   margin-left: 20px; }
 
-#music {
-  float: right;
-  width: 25px;
-  margin-top: 20px;
-  margin-right: 20px; }
-
 h1 {
   text-align: center;
   font-weight: normal; }
@@ -372,7 +375,7 @@ h1 {
 
 #hideQR {
   position: absolute;
-  top: 477px;
+  top: 500px;
   left: 46%;
   width: 30px; }
 
@@ -407,6 +410,7 @@ body {
 ================================================== */
 .m-product {
   width: 100%;
+  position: relative;
   /* ==============================================
 	<| mixin
 	============================================== */
@@ -462,9 +466,15 @@ body {
   .m-product .carousel {
     width: 100%;
     height: 6.0rem;
-    text-align: center; }
-    .m-product .carousel img {
-      margin: 1.25rem 0.25rem; }
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    overflow: hidden; }
+  .m-product .yearpro {
+    width: 100%;
+    height: 6rem;
+    position: relative;
+    box-sizing: border-box; }
   .m-product .yearlist {
     width: 100%;
     height: 8.0rem; }
@@ -509,8 +519,24 @@ body {
     width: 100%;
     background-color: #b5b5b5;
     height: 2.0rem; }
+  .m-product #thirdmusic {
+    top: -1.1rem; }
+  .m-product .yearpro img {
+    width: 90px; }
+  .m-product .three_1 {
+    position: absolute;
+    left: 10%;
+    top: 60px; }
+  .m-product .three_3 {
+    position: absolute;
+    right: 10%;
+    top: 60px; }
+  .m-product .three_2 {
+    display: block;
+    margin: 20px auto;
+    margin-top: 0; }
 
-.sign > img {
+#signwall {
   width: 60%;
   margin: 2rem auto;
   margin-bottom: 0;
@@ -557,6 +583,7 @@ body {
 <| title
 ================================================== */
 .m-title {
+  position: relative;
   /* ==============================================
 	<| all
 	============================================== */
@@ -637,8 +664,11 @@ body {
     margin: auto;
     top: -0.8rem; }
     .m-title .logo img {
-      width: 100%;
-      height: 100%; }
+      width: 3rem;
+      display: block;
+      margin: 0 auto; }
+  .m-title #firstmusic {
+    top: -2.1rem; }
 
 .tosign > a {
   display: block;

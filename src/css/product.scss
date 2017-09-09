@@ -4,6 +4,7 @@
 
 .m-product {
     width: 100%;
+    position: relative;
     /* ==============================================
 	<| mixin
 	============================================== */
@@ -46,9 +47,15 @@
         width: 100%;
         height: 6.0rem;
         text-align: center;
-        img {
-            margin: 1.25rem 0.25rem;
-        }
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        overflow: hidden;
+    }
+    .yearpro {
+        width: 100%;
+        height: 6rem;
+        position: relative;
+        box-sizing: border-box;
     }
     /* ==============================================
 	<| yearlist
@@ -67,5 +74,26 @@
     .footer {
         @include div-border;
         height: 2.0rem;
+    }
+    #thirdmusic {
+        top: -1.1rem;
+    }
+    .yearpro img {
+        width: 90px;
+    }
+    .three_1 {
+        position: absolute;
+        left: 10%;
+        top: 60px;
+    }
+    .three_3 {
+        position: absolute;
+        right: 10%;
+        top: 60px;
+    }
+    .three_2 {
+        display: block;
+        margin: 20px auto;
+        margin-top: 0;
     }
 }

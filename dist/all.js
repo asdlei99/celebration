@@ -118,6 +118,22 @@
 /* ==================================================
 <| $(document).ready
 ================================================== */
+//播放器控制
+var audio = document.getElementById('mp3');
+$('.music').click(function() {
+    //防止冒泡
+    event.stopPropagation();
+    if (audio.paused) //如果当前是暂停状态
+    {
+        $('.music').css("animation", "rotate 2s infinite linear");
+        audio.play(); //播放
+        return;
+    }
+
+    //当前是播放状态
+    $('.music').css("animation", "circle 2s infinite linear ");
+    audio.pause(); //暂停
+});
 
  /**
  *  jQuery Color Animations
@@ -305,7 +321,7 @@ function initializePageProduct() {
     /* yearlist */
     var yearlist = $(".m-product").find(".yearlist");
     var menu = yearlist.find(".menu").find(".options");
-    var list = ["2017", "2016", "2015", "2002"];
+    var list = ["2017", "2016", "2015", "2013", "2012", "2011", "2006", "2005", "2002"];
     initializeMenu(menu, list);
 }
 /* ==================================================
@@ -322,62 +338,86 @@ function initializeMenu(menu, list) {
     var options = menu.find("p");
     var option = options.first(); //option = $(options[1]);
     option.addClass("active");
-    /* bind event */
+    /* set event */
     menu.attr("tabindex", 0);
     menu.focus();
-    $(document).bind("keydown", function(event) {
+    menu.bind("keydown", function(event) {
         scrollEffect(menu, event);
     });
     /* bind event */
-    /*menu.bind("mouseover", function() {
-    	menu.unbind("keydown");
-    	menu.bind("keydown", function(event) {
-    		scrollEffect(menu, event);
-    	});
+    menu.bind("click", function(event) {
+        console.log("clock");
+    });
+    menu.bind("mouseover", function() {
+        menu.unbind("keydown");
+        menu.bind("keydown", function(event) {
+            scrollEffect(menu, event);
+        });
     });
     menu.bind("mouseout", function() {
-    	menu.unbind("keydown");
-    });*/
+        menu.unbind("keydown");
+    });
+    var X, Y, startX, startY, lock = false;
+    menu.bind("touchstart", function(event) {
+        startX = event.originalEvent.changedTouches[0].pageX,
+            startY = event.originalEvent.changedTouches[0].pageY;
+    });
+    menu.bind("touchmove", function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (lock) return;
+        lock = true;
+        var moveEndX = event.originalEvent.changedTouches[0].pageX,
+            moveEndY = event.originalEvent.changedTouches[0].pageY;
+        X = moveEndX - startX;
+        Y = moveEndY - startY;
+        if (Y > 0) {
+            scrollEffect(menu, event, 40);
+        }
+        if (Y < 0) {
+            scrollEffect(menu, event, 38);
+        }
+    });
+    menu.bind("touchend", function(event) {
+        lock = false;
+    });
 }
 /* ==================================================
 <| scrollEffect
 ================================================== */
-function scrollEffect(menu, event) {
+function scrollEffect(menu, event, direction) {
     /* initialize */
-    var key = event.which;
-    var rate = 1.9 + 0.1;
+    var key = direction || event.which;
+    var rate = 70 + 4;
     var options = menu.find("p");
     var option = options.find(".active");
     var index = menu.attr("index");
     var now = index;
-    /* keydown: 37-left, 38-up, 39-right, 40-down */
+    var height = $(".yearpro").height();
+
     switch (key) {
         case 40:
             if (index >= 1) {
                 now--;
-                menu.animate({ marginTop: '+=' + rate + 'rem' });
-                break;
-            } else {
-                return;
+                menu.animate({ marginTop: '+=' + rate + 'px' });
+                $("#pro2017").animate({ marginTop: -225 * index + 225 + 'px' });
             }
+            break;
         case 38:
-            if (index < 4 - 1) {
+            if (index < 8) {
                 now++;
-                menu.animate({ marginTop: '-=' + rate + 'rem' });
-                break;
-            } else {
-                return;
+                menu.animate({ marginTop: '-=' + rate + 'px' });
+                $("#pro2017").animate({ marginTop: -225 * index - 225 + 'px' });
             }
-        default:
-            return;
+            break;
     }
     /* set animation */
     var css = {
-        fontSize: '1.0rem',
+        fontSize: '40px',
         color: '#A0A0A0'
     };
     var cssActive = {
-        fontSize: '1.4rem',
+        fontSize: '56px',
         color: '#00A0E9'
     }
     $(options[index]).animate(css);
@@ -477,6 +517,7 @@ function initializePageTitle() {
                 /* and swip to the next page */
                 setTimeout(function() {
                     swiper.slideNext(false);
+                    $(".m-title").removeClass("swiper-no-swiping");
                 }, 2000);
                 /* allow to scroll */
                 swiper.enableMousewheelControl();
@@ -549,26 +590,26 @@ function InitThis() {
     ctx.fillRect(0, 0, canvas_width, 250);
 
     var $canvas = $('#myCanvas');
-    $canvas[0].addEventListener('touchstart', function(e){
+    $canvas[0].addEventListener('touchstart', function(e) {
         mousePressed = true;
         e = e.touches[0];
         lastX = e.pageX - $(this).offset().left;
         lastY = e.pageY - $(this).offset().top;
         Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
     });
-    $canvas[0].addEventListener('touchmove', function(e){
+    $canvas[0].addEventListener('touchmove', function(e) {
         if (mousePressed) {
             e = e.touches[0];
             Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
         }
     });
-    $canvas[0].addEventListener('touchend', function(){
+    $canvas[0].addEventListener('touchend', function() {
         mousePressed = false;
     });
-    $canvas.mouseup(function (e) {
+    $canvas.mouseup(function(e) {
         mousePressed = false;
     });
-        $canvas.mouseleave(function (e) {
+    $canvas.mouseleave(function(e) {
         mousePressed = false;
     });
 }
@@ -576,7 +617,7 @@ function InitThis() {
 //清空画板
 function clearBoard() {
     ctx.fillStyle = "#fff";
-    ctx.fillRect(0, 0, canvas_width,250);
+    ctx.fillRect(0, 0, canvas_width, 250);
 }
 
 function UploadPic() {
@@ -591,7 +632,7 @@ function UploadPic() {
                 alert("上传成功！");
                 window.location.reload();
             } else {
-                alert(String(data));
+                alert("上传失败！请重试！");
             }
         }
     })
@@ -599,97 +640,97 @@ function UploadPic() {
 
 InitThis();
 window.addEventListener('load', function() {
-  return;
-  var canvas;
-  var ctx;
-  var sentences = [
-    '溽暑步月，往昔满心头，十五载相庆相救',
-    '路不曾平，志不曾移',
-    '少年郎，犹记旧时新月梦'
-  ];
-  var wordWidth = 18;
-  var c_width = window.innerWidth;
-  var wordWra = document.querySelector('.wordWra');
-  var firstWra = document.querySelector('.first');
-  var secondWra = document.querySelector('.second');
-  var thirdWra = document.querySelector('.third');
-  var wordSlide = document.querySelector('.swiper-slide');
-  var imgs = document.querySelectorAll('.imgWra img');
-  var progress = 0;
-  var fullProgress = 25;
-  var pageLock = true;
-  var stage = 1;
+    return;
+    var canvas;
+    var ctx;
+    var sentences = [
+        '溽暑步月，往昔满心头，十五载相庆相救',
+        '路不曾平，志不曾移',
+        '少年郎，犹记旧时新月梦'
+    ];
+    var wordWidth = 18;
+    var c_width = window.innerWidth;
+    var wordWra = document.querySelector('.wordWra');
+    var firstWra = document.querySelector('.first');
+    var secondWra = document.querySelector('.second');
+    var thirdWra = document.querySelector('.third');
+    var wordSlide = document.querySelector('.swiper-slide');
+    var imgs = document.querySelectorAll('.imgWra img');
+    var progress = 0;
+    var fullProgress = 25;
+    var pageLock = true;
+    var stage = 1;
 
-  function init(){
-    canvas = document.getElementById('canvas');
-    ctx = canvas.getContext('2d');
-    canvas.width = c_width;
-    ctx.font = '18px KaiTi,STKaiti';
-    // setTimeout(drawText,0);
-    var timer;
-    var lock = false;
+    function init() {
+        canvas = document.getElementById('canvas');
+        ctx = canvas.getContext('2d');
+        canvas.width = c_width;
+        ctx.font = '18px KaiTi,STKaiti';
+        // setTimeout(drawText,0);
+        var timer;
+        var lock = false;
 
-    wordWra.addEventListener('touchstart', function(e) {
-      e.stopPropagation();
-      if(lock) return;
-      lock = true;
-      timer = setInterval(function(){
-        if(progress >= fullProgress) {
-          clearInterval(timer);
-          drawText(function() {
-            progress = 0;
-            stage++;
-            if(stage<=3) lock = false;
-            else {
-              pageLock = false;
+        wordWra.addEventListener('touchstart', function(e) {
+            e.stopPropagation();
+            if (lock) return;
+            lock = true;
+            timer = setInterval(function() {
+                if (progress >= fullProgress) {
+                    clearInterval(timer);
+                    drawText(function() {
+                        progress = 0;
+                        stage++;
+                        if (stage <= 3) lock = false;
+                        else {
+                            pageLock = false;
+                        }
+                    });
+                } else {
+                    progress++;
+                    fill(stage);
+                }
+            }, 100);
+        });
+        wordWra.addEventListener('touchend', function() {
+            if (timer) {
+                clearInterval(timer);
+                lock = false;
             }
-          });
-        }
-        else {
-          progress++;
-          fill(stage);
-        }
-      }, 100);
-    });
-    wordWra.addEventListener('touchend', function(){
-      if(timer) {
-        clearInterval(timer);
-        lock = false;
-      }
-    });
-    wordSlide.addEventListener('touchmove', function (e) {
-      if(pageLock) e.stopPropagation();
-    });
-  }
+        });
+        wordSlide.addEventListener('touchmove', function(e) {
+            if (pageLock) e.stopPropagation();
+        });
+    }
 
-  function fill(stage){
-    if(stage === 1){
-      firstWra.style.height = progress/fullProgress*154+'px';
+    function fill(stage) {
+        if (stage === 1) {
+            firstWra.style.height = progress / fullProgress * 154 + 'px';
+        }
+        if (stage === 2) {
+            secondWra.style.height = progress / fullProgress * 182 + 'px';
+        }
+        if (stage === 3) {
+            thirdWra.style.width = progress / fullProgress * 194 + 'px';
+        }
     }
-    if(stage === 2){
-      secondWra.style.height = progress/fullProgress*182+'px';
+
+    function drawText(callback) {
+        var i = 0;
+        var fadeStep = 10;
+        var startPosition = (c_width - wordWidth * sentences[stage - 1].length) / 2;
+        if (stage > 1) imgs[stage - 2].style.opacity = 0;
+        imgs[stage - 1].style.opacity = 1;
+        var clock = setInterval(function() {
+            if (!sentences[stage - 1][i]) {
+                clearInterval(clock);
+                callback();
+            } else {
+                ctx.clearRect(0, 0, c_width, 40);
+                ctx.fillStyle = 'rgba(0,0,0,' + Tween.Quad.easeIn(i, 0.2, 1, sentences[stage - 1].length) + ')';
+                ctx.fillText(sentences[stage - 1].substring(0, i + 1), startPosition, 20);
+                i++;
+            }
+        }, 200);
     }
-    if(stage === 3){
-      thirdWra.style.width = progress/fullProgress*194+'px';  
-    }
-  }
-  function drawText(callback){
-    var i = 0;
-    var fadeStep = 10;
-    var startPosition = (c_width-wordWidth*sentences[stage-1].length)/2;
-    if(stage>1)  imgs[stage-2].style.opacity = 0;
-    imgs[stage-1].style.opacity = 1;
-    var clock = setInterval(function() {
-      if(!sentences[stage-1][i]){
-        clearInterval(clock);
-        callback();
-      }else{
-        ctx.clearRect(0,0,c_width,40);
-        ctx.fillStyle = 'rgba(0,0,0,'+ Tween.Quad.easeIn(i, 0.2, 1, sentences[stage-1].length) +')';
-        ctx.fillText(sentences[stage-1].substring(0,i+1), startPosition, 20);
-        i++;
-      }
-    }, 200);
-  }
-  init();
+    init();
 });

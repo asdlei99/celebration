@@ -11,7 +11,7 @@ function initializePageProduct() {
     /* yearlist */
     var yearlist = $(".m-product").find(".yearlist");
     var menu = yearlist.find(".menu").find(".options");
-    var list = ["2017", "2016", "2015", "2002"];
+    var list = ["2017", "2016", "2015", "2013", "2012", "2011", "2006", "2005", "2002"];
     initializeMenu(menu, list);
 }
 /* ==================================================
@@ -28,62 +28,86 @@ function initializeMenu(menu, list) {
     var options = menu.find("p");
     var option = options.first(); //option = $(options[1]);
     option.addClass("active");
-    /* bind event */
+    /* set event */
     menu.attr("tabindex", 0);
     menu.focus();
-    $(document).bind("keydown", function(event) {
+    menu.bind("keydown", function(event) {
         scrollEffect(menu, event);
     });
     /* bind event */
-    /*menu.bind("mouseover", function() {
-    	menu.unbind("keydown");
-    	menu.bind("keydown", function(event) {
-    		scrollEffect(menu, event);
-    	});
+    menu.bind("click", function(event) {
+        console.log("clock");
+    });
+    menu.bind("mouseover", function() {
+        menu.unbind("keydown");
+        menu.bind("keydown", function(event) {
+            scrollEffect(menu, event);
+        });
     });
     menu.bind("mouseout", function() {
-    	menu.unbind("keydown");
-    });*/
+        menu.unbind("keydown");
+    });
+    var X, Y, startX, startY, lock = false;
+    menu.bind("touchstart", function(event) {
+        startX = event.originalEvent.changedTouches[0].pageX,
+            startY = event.originalEvent.changedTouches[0].pageY;
+    });
+    menu.bind("touchmove", function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (lock) return;
+        lock = true;
+        var moveEndX = event.originalEvent.changedTouches[0].pageX,
+            moveEndY = event.originalEvent.changedTouches[0].pageY;
+        X = moveEndX - startX;
+        Y = moveEndY - startY;
+        if (Y > 0) {
+            scrollEffect(menu, event, 40);
+        }
+        if (Y < 0) {
+            scrollEffect(menu, event, 38);
+        }
+    });
+    menu.bind("touchend", function(event) {
+        lock = false;
+    });
 }
 /* ==================================================
 <| scrollEffect
 ================================================== */
-function scrollEffect(menu, event) {
+function scrollEffect(menu, event, direction) {
     /* initialize */
-    var key = event.which;
-    var rate = 1.9 + 0.1;
+    var key = direction || event.which;
+    var rate = 70 + 4;
     var options = menu.find("p");
     var option = options.find(".active");
     var index = menu.attr("index");
     var now = index;
-    /* keydown: 37-left, 38-up, 39-right, 40-down */
+    var height = $(".yearpro").height();
+
     switch (key) {
         case 40:
             if (index >= 1) {
                 now--;
-                menu.animate({ marginTop: '+=' + rate + 'rem' });
-                break;
-            } else {
-                return;
+                menu.animate({ marginTop: '+=' + rate + 'px' });
+                $("#pro2017").animate({ marginTop: -225 * index + 225 + 'px' });
             }
+            break;
         case 38:
-            if (index < 4 - 1) {
+            if (index < 8) {
                 now++;
-                menu.animate({ marginTop: '-=' + rate + 'rem' });
-                break;
-            } else {
-                return;
+                menu.animate({ marginTop: '-=' + rate + 'px' });
+                $("#pro2017").animate({ marginTop: -225 * index - 225 + 'px' });
             }
-        default:
-            return;
+            break;
     }
     /* set animation */
     var css = {
-        fontSize: '1.0rem',
+        fontSize: '40px',
         color: '#A0A0A0'
     };
     var cssActive = {
-        fontSize: '1.4rem',
+        fontSize: '56px',
         color: '#00A0E9'
     }
     $(options[index]).animate(css);
