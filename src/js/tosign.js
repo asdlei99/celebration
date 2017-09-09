@@ -24,7 +24,7 @@ function InitThis() {
     var pic0 = document.getElementById('myCanvas');
     pic0.width = canvas_width;
     pic0.height = 250;
-    ctx.fillStyle = "#fff";
+    ctx.fillStyle = 'rgba(255, 255, 255, 0)';
     ctx.fillRect(0, 0, canvas_width, 250);
 
     var $canvas = $('#myCanvas');
@@ -54,8 +54,7 @@ function InitThis() {
 
 //清空画板
 function clearBoard() {
-    ctx.fillStyle = "#fff";
-    ctx.fillRect(0, 0, canvas_width, 250);
+    ctx.clearRect(0, 0, canvas_width, 250);
 }
 
 function UploadPic() {

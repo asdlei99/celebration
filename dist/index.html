@@ -243,18 +243,27 @@
                     </div>
                 </div>
             </div>
-            <div class="swiper-slide">
+            <div class="swiper-slide" id="sign">
                 <div class="sign">
                     <img src="./imgs/sign.png" id="signwall">
                     <img class="music" src="imgs/music.png" alt="music">
                     <form action="./api/index.php" name="download">
-                        <div class="play1">
-                            <ul class="window">
+                        <div class="play1" id="first_danmu">
+                            <ul class="window top">
+                                <li><img src="./imgs/test.png" class="picc"></li>
+                            </ul>
+                        </div>
+                        <div class="play1" id="second_danmu">
+                            <ul class="window mid">
+                                <li><img src="./imgs/test.png" class="picc"></li>
+                            </ul>
+                        </div>
+                        <div class="play1" id="third_danmu">
+                            <ul class="window bottom">
                                 <li><img src="./imgs/test.png" class="picc"></li>
                             </ul>
                         </div>
                     </form>
-                    <div class="play2"></div>
                     <a href="#tosign">签名</a>
                 </div>
             </div>

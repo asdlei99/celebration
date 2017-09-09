@@ -1,3 +1,7 @@
+#sign {
+    overflow: hidden;
+}
+
 #signwall {
     width: 60%;
     margin: 2rem auto;
@@ -8,7 +12,7 @@
 .sign form {
     overflow: hidden;
     width: 5000px;
-    height: 250px;
+    height: 275px;
     overflow: hidden;
 }
 
@@ -29,10 +33,11 @@
 
 .window {
     width: 1500px;
-    height: 250px;
+    height: 90px;
     overflow-y: hidden;
     list-style: none;
     padding: 0;
+    margin: 0;
     float: left;
 }
 
@@ -43,5 +48,9 @@
 
 .window>li>img {
     float: left;
-    height: 250px;
+    height: 90px;
+}
+
+.play1 {
+    height: 90px;
 }

@@ -536,6 +536,9 @@ body {
     margin: 20px auto;
     margin-top: 0; }
 
+#sign {
+  overflow: hidden; }
+
 #signwall {
   width: 60%;
   margin: 2rem auto;
@@ -545,7 +548,7 @@ body {
 .sign form {
   overflow: hidden;
   width: 5000px;
-  height: 250px;
+  height: 275px;
   overflow: hidden; }
 
 .sign > a {
@@ -564,10 +567,11 @@ body {
 
 .window {
   width: 1500px;
-  height: 250px;
+  height: 90px;
   overflow-y: hidden;
   list-style: none;
   padding: 0;
+  margin: 0;
   float: left; }
 
 .window > li {
@@ -576,7 +580,10 @@ body {
 
 .window > li > img {
   float: left;
-  height: 250px; }
+  height: 90px; }
+
+.play1 {
+  height: 90px; }
 
 @charset "UTF-8";
 /* ==================================================
@@ -683,6 +690,9 @@ body {
   line-height: 40px;
   letter-spacing: 2px;
   border-radius: 7px; }
+
+.canvas {
+  border: 1px solid #000; }
 
 .m-words .wordWra {
   position: relative;
