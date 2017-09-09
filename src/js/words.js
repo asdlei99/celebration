@@ -1,5 +1,4 @@
 window.addEventListener('load', function() {
-    return;
     var canvas;
     var ctx;
     var sentences = [
@@ -74,22 +73,28 @@ window.addEventListener('load', function() {
     }
 
     function drawText(callback) {
-        var i = 0;
-        var fadeStep = 10;
-        var startPosition = (c_width - wordWidth * sentences[stage - 1].length) / 2;
+        var i = 0, j=1;
+        var fadeStep = 10;// 文字淡入step数，用于Tween
+        var startPosition = (c_width - wordWidth * sentences[stage - 1].length) / 2;// 根据文字长度计算渲染起始位置
         if (stage > 1) imgs[stage - 2].style.opacity = 0;
         imgs[stage - 1].style.opacity = 1;
+        ctx.clearRect(0, 0, c_width, 40);// 渲染下一幕文字时清空画布
         var clock = setInterval(function() {
-            if (!sentences[stage - 1][i]) {
+            if (!sentences[stage - 1][i] && j===fadeStep) {// 当前文字渲染结束调用回调
                 clearInterval(clock);
                 callback();
             } else {
-                ctx.clearRect(0, 0, c_width, 40);
-                ctx.fillStyle = 'rgba(0,0,0,' + Tween.Quad.easeIn(i, 0.2, 1, sentences[stage - 1].length) + ')';
-                ctx.fillText(sentences[stage - 1].substring(0, i + 1), startPosition, 20);
-                i++;
+                j>fadeStep?j=1:j;
+                ctx.fillStyle = 'rgba(0,0,0,' + Tween.Quad.easeIn(j, 0.2, 1, fadeStep) + ')';// 透明度计算，用于渐进渲染
+                if(j++===1) {// 开始渲染某个文字
+                    ctx.fillText(sentences[stage - 1][i], startPosition+wordWidth*i, wordWidth);
+                    i++;
+                }else{// 渐进渲染当前文字
+                    ctx.clearRect(startPosition+wordWidth*(i-1), 0, wordWidth, 40);
+                    ctx.fillText(sentences[stage - 1][i-1], startPosition+wordWidth*(i-1), wordWidth);
+                }
             }
-        }, 200);
+        }, 16);
     }
     init();
 });

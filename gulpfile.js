@@ -3,6 +3,7 @@ var include = require('gulp-include');
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var spritesmith = require('gulp.spritesmith');
+var imagemin = require('gulp-imagemin');
 
 gulp.task('include', function(){
   console.log('including pages...');
@@ -40,6 +41,15 @@ gulp.task('sprite', function(){
 });
 gulp.task('imagemin', function(){
   gulp.src('src/imgs/*.png')
+    .pipe(imagemin([
+      imagemin.optipng({optimizationLevel: 5})
+    ], {
+      verbose: true
+    }))
+    .pipe(gulp.dest('dist/imgs/'));
+});
+gulp.task('mvimgs', function(){
+  gulp.src('src/imgs/*.png')
     .pipe(gulp.dest('dist/imgs/'));
 });
 
@@ -48,6 +58,6 @@ gulp.task('watch', function(){
   gulp.watch('src/js/*.js', ['js']);
   gulp.watch('src/css/*.scss', ['sass']);
   gulp.watch('src/imgs/icons/*.png', ['sprite']);
-  gulp.watch('src/imgs/*.png', ['imagemin']);
+  gulp.watch('src/imgs/*.png', ['mvimgs']);
 });
 gulp.task('build', ['include', 'js', 'sass', 'sprite', 'imagemin']);
