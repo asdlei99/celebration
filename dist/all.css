@@ -29,18 +29,32 @@
 .header {
   width: 100%;
   background-color: #b5b5b5;
-  height: 40px; }
+  height: 1.0rem; }
 
 .footer {
   width: 100%;
   background-color: #b5b5b5;
-  height: 100px; }
+  height: 2.5rem; }
+
+.music {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 32px;
+  animation: rotate 2s infinite linear; }
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }
 
 /* ==================================================
 <| history
 ================================================== */
 .m-history {
-  min-width: 768px;
+  width: 100%;
+  position: relative;
   /* ==============================================
 	<| mixin
 	============================================== */
@@ -60,6 +74,9 @@
 	<| header
 	============================================== */
   /* ==============================================
+	<| media
+	============================================== */
+  /* ==============================================
 	<| page-top
 	============================================== */
   /* ==============================================
@@ -71,69 +88,72 @@
   .m-history .header {
     width: 100%;
     background-color: #b5b5b5;
-    height: 40px; }
+    height: 1.0rem; }
   .m-history .page-top {
     width: 100%;
-    height: 220px;
-    padding-top: 80px;
+    height: 2.93333rem;
+    padding-top: 1.0rem;
+    background: center bottom url("imgs/timeline-top.png") no-repeat;
+    background-size: contain;
+    overflow: hidden;
     /* title */
-    /* music */
     /* title-dialog */
     /* title-dialog media */
+    /*@media screen and (min-width: 21.6rem) {
+			.title-dialog {
+				.box {
+					width: 50%;
+					max-width: 11.7rem;
+					height: 2.7rem;
+					line-height: 2.7rem;
+					font-size: 1.3rem;
+				}
+			}
+		}*/
     /* timeline-top */ }
     .m-history .page-top .title {
       display: block;
-      width: 320px;
-      height: 40px;
+      width: 4.26667rem;
+      height: 0.53333rem;
       margin: 0 auto;
       text-align: center;
-      font-size: 36px;
+      font-size: 0.48rem;
       color: #000; }
-    .m-history .page-top .music {
-      float: right;
-      margin-top: -64px;
-      margin-right: 28px; }
     .m-history .page-top .title-dialog {
       position: relative;
+      z-index: 1;
       width: 100%;
-      height: 128px;
-      margin-top: 24px;
-      z-index: 1; }
+      height: 1.70667rem;
+      margin-top: 0.32rem; }
       .m-history .page-top .title-dialog .arrow {
         width: 0;
         height: 0;
-        border: 27px solid transparent;
-        border-bottom: 27px solid #138DFF;
+        border: 0.36rem solid transparent;
+        border-bottom: 0.36rem solid #138DFF;
         border-top: none;
         margin: 0 auto; }
       .m-history .page-top .title-dialog .box {
-        width: 50%;
-        max-width: 468px;
-        height: 108px;
+        width: 5.33333rem;
+        height: 1.33333rem;
         margin: 0 auto;
         text-align: center;
-        line-height: 108px;
-        font-size: 64px;
+        line-height: 1.44rem;
+        font-size: 0.8rem;
         color: #FFF;
         background-color: #138DFF;
-        border-radius: 15px;
-        box-shadow: 3px 3px 10px #888888; }
-    @media screen and (min-width: 864px) {
-      .m-history .page-top .title-dialog .box {
-        width: 50%;
-        max-width: 468px;
-        height: 108px;
-        line-height: 108px;
-        font-size: 64px; } }
+        border-radius: 0.2rem;
+        box-shadow: 0.04rem 0.04rem 0.13333rem #888888; }
     .m-history .page-top .timeline-top {
       position: relative;
+      z-index: 0;
       width: 100%;
-      text-align: center;
-      z-index: 0; }
+      height: 1.33333rem;
+      text-align: center; }
   .m-history .timeline {
     width: 100%;
-    height: 3200px;
-    background: center url("imgs/timeline.png") no-repeat;
+    height: 42.66667rem;
+    background: center top url("imgs/timeline.png") no-repeat;
+    background-size: contain;
     /* dialog */
     /* dialog bgs */
     /* dialog settings */ }
@@ -143,101 +163,111 @@
       text-align: center;
       overflow: hidden; }
       .m-history .timeline .dialog p {
-        margin: 10px;
-        font-size: 24px; }
+        margin: 0.096rem;
+        font-size: 0.32rem; }
         .m-history .timeline .dialog p span {
           font-weight: 600; }
       .m-history .timeline .dialog .time {
-        font-size: 18px;
-        margin-bottom: 14px; }
+        font-size: 0.24rem;
+        margin-bottom: 0.18667rem; }
     .m-history .timeline .d-1 {
-      background: left url("imgs/dialog (1).png") no-repeat; }
+      background: left url("imgs/dialog (1).png") no-repeat;
+      background-size: contain; }
     .m-history .timeline .d-2 {
-      background: left url("imgs/dialog (2).png") no-repeat; }
+      background: left url("imgs/dialog (2).png") no-repeat;
+      background-size: contain; }
     .m-history .timeline .d-3 {
-      background: left url("imgs/dialog (3).png") no-repeat; }
+      background: left url("imgs/dialog (3).png") no-repeat;
+      background-size: contain; }
     .m-history .timeline .d-4 {
-      background: left url("imgs/dialog (4).png") no-repeat; }
+      background: left url("imgs/dialog (4).png") no-repeat;
+      background-size: contain; }
     .m-history .timeline .d-5 {
-      background: left url("imgs/dialog (5).png") no-repeat; }
+      background: left url("imgs/dialog (5).png") no-repeat;
+      background-size: contain; }
     .m-history .timeline .d-6 {
-      background: left url("imgs/dialog (6).png") no-repeat; }
+      background: left url("imgs/dialog (6).png") no-repeat;
+      background-size: contain; }
     .m-history .timeline .d-7 {
-      background: left url("imgs/dialog (7).png") no-repeat; }
+      background: left url("imgs/dialog (7).png") no-repeat;
+      background-size: contain; }
     .m-history .timeline .d-8 {
-      background: left url("imgs/dialog (8).png") no-repeat; }
+      background: left url("imgs/dialog (8).png") no-repeat;
+      background-size: contain; }
     .m-history .timeline .d-9 {
-      background: left url("imgs/dialog (9).png") no-repeat; }
+      background: left url("imgs/dialog (9).png") no-repeat;
+      background-size: contain; }
     .m-history .timeline .d-10 {
-      background: left url("imgs/dialog (10).png") no-repeat; }
+      background: left url("imgs/dialog (10).png") no-repeat;
+      background-size: contain; }
     .m-history .timeline .dialog.d-1 {
-      width: 238px;
-      height: 217px;
-      top: 78px;
-      left: 52px;
-      padding-left: 8px; }
+      width: 3.17333rem;
+      height: 2.89333rem;
+      top: 1.04rem;
+      left: 0.69333rem;
+      padding-left: 0.10667rem; }
     .m-history .timeline .dialog.d-2 {
-      width: 460px;
-      height: 179px;
-      top: 200px;
-      left: -170px;
-      padding-left: 14px; }
+      width: 6.13333rem;
+      height: 2.38667rem;
+      top: 2.66667rem;
+      left: -2.26667rem;
+      padding-left: 0.18667rem; }
     .m-history .timeline .dialog.d-3 {
-      width: 460px;
-      height: 182px;
-      top: 218px;
-      left: -170px;
-      padding-left: 14px; }
+      width: 6.13333rem;
+      height: 2.42667rem;
+      top: 2.90667rem;
+      left: -2.26667rem;
+      padding-left: 0.18667rem; }
     .m-history .timeline .dialog.d-4 {
-      width: 249px;
-      height: 283px;
-      top: 238px;
-      left: 41px; }
+      width: 3.32rem;
+      height: 3.77333rem;
+      top: 3.17333rem;
+      left: 0.54667rem; }
     .m-history .timeline .dialog.d-5 {
-      width: 282px;
-      height: 338px;
-      top: 172px;
-      left: -289px;
-      padding-top: 48px; }
+      width: 3.76rem;
+      height: 4.50667rem;
+      top: 2.29333rem;
+      left: -3.85333rem;
+      padding-top: 0.64rem; }
       .m-history .timeline .dialog.d-5 .time {
-        margin-left: -72px; }
+        margin-left: -0.96rem; }
     .m-history .timeline .dialog.d-6 {
-      width: 479px;
-      height: 231px;
-      top: 224px;
-      left: -290px; }
+      width: 6.38667rem;
+      height: 3.08rem;
+      top: 2.98667rem;
+      left: -3.86667rem; }
       .m-history .timeline .dialog.d-6 p {
-        margin-left: -10px; }
+        margin-left: -0.13333rem; }
     .m-history .timeline .dialog.d-7 {
-      width: 398px;
-      height: 225px;
-      top: 284px;
-      left: -290px; }
+      width: 5.30667rem;
+      height: 3rem;
+      top: 3.78667rem;
+      left: -3.86667rem; }
       .m-history .timeline .dialog.d-7 p {
-        margin-left: -16px; }
+        margin-left: -0.21333rem; }
     .m-history .timeline .dialog.d-8 {
-      width: 201px;
-      height: 336px;
-      top: 380px;
-      left: -250px;
-      padding-left: 4px; }
+      width: 2.68rem;
+      height: 4.48rem;
+      top: 5.06667rem;
+      left: -3.33333rem;
+      padding-left: 0.05333rem; }
     .m-history .timeline .dialog.d-9 {
-      width: 255px;
-      height: 312px;
-      top: 48px;
-      left: 34px;
-      padding-top: 40px;
-      padding-left: 8px; }
+      width: 3.4rem;
+      height: 4.16rem;
+      top: 0.64rem;
+      left: 0.45333rem;
+      padding-top: 0.53333rem;
+      padding-left: 0.10667rem; }
     .m-history .timeline .dialog.d-10 {
-      width: 260px;
-      height: 248px;
-      top: 262px;
-      left: -290px;
-      padding-top: 48px; }
+      width: 3.46667rem;
+      height: 3.30667rem;
+      top: 3.49333rem;
+      left: -3.86667rem;
+      padding-top: 0.64rem; }
   .m-history .footer {
     width: 100%;
     background-color: #b5b5b5;
-    height: 100px; }
+    height: 2.0rem; }
 
 /* ==================================================
 <| mixin div-border
@@ -251,6 +281,103 @@
 /* ==================================================
 <| mixin scrolling-list
 ================================================== */
+
+.m-money {
+  box-sizing: border-box;
+  position: relative; }
+
+#top_image {
+  height: 30px; }
+
+#elogo {
+  float: left;
+  margin-top: 20px;
+  margin-left: 20px; }
+
+h1 {
+  text-align: center;
+  font-weight: normal; }
+
+.m-money > p {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #999999; }
+
+.special {
+  font-weight: 600; }
+
+.intro-word p {
+  text-align: center;
+  line-height: 10px;
+  font-size: 14px; }
+
+.uses {
+  width: 80%;
+  margin-left: 10%; }
+
+.progress {
+  width: 100%;
+  height: 80px;
+  margin-bottom: 10px; }
+
+.m-money > a {
+  display: block;
+  width: 60%;
+  height: 40px;
+  margin: 0 auto;
+  margin-top: 30px;
+  text-align: center;
+  background-color: #00a0e9;
+  color: #fff;
+  text-decoration: none;
+  line-height: 40px;
+  letter-spacing: 2px;
+  border-radius: 7px; }
+
+.use-back {
+  float: left;
+  width: 60px;
+  height: 60px;
+  margin-top: 10px;
+  margin-left: 10px;
+  background-color: #4cb4e2;
+  border-radius: 50%; }
+
+.use-back > img {
+  width: 40px;
+  margin-left: 10px;
+  margin-top: 10px; }
+
+.progress > h2 {
+  margin-bottom: 0;
+  font-weight: normal;
+  margin-left: 100px;
+  font-size: 22px; }
+
+.progress > p {
+  margin-top: 3px;
+  margin-left: 100px;
+  font-size: 14px; }
+
+#QRcode {
+  display: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background-image: url("./imgs/bg.png");
+  background-size: cover; }
+
+#QR {
+  width: 300px;
+  display: block;
+  margin: 100px auto; }
+
+#hideQR {
+  position: absolute;
+  top: 500px;
+  left: 46%;
+  width: 30px; }
 
 html, body {
   position: relative;
@@ -282,6 +409,8 @@ body {
 <| product
 ================================================== */
 .m-product {
+  width: 100%;
+  position: relative;
   /* ==============================================
 	<| mixin
 	============================================== */
@@ -315,49 +444,55 @@ body {
   .m-product .header {
     width: 100%;
     background-color: #b5b5b5;
-    height: 40px; }
+    height: 1.0rem; }
   .m-product .page-top {
     width: 100%;
-    height: 120px;
-    padding-top: 80px;
+    height: 1.0rem;
+    padding-top: 1.0rem;
     /* title */
     /* music */ }
     .m-product .page-top .title {
       display: block;
-      width: 320px;
-      height: 40px;
+      width: 8.0rem;
+      height: 1.0rem;
       margin: 0 auto;
       text-align: center;
-      font-size: 36px;
+      font-size: 0.9rem;
       color: #000; }
     .m-product .page-top .music {
       float: right;
-      margin-top: -24px;
-      margin-right: 28px; }
+      margin-top: -0.6rem;
+      margin-right: 0.7rem; }
   .m-product .carousel {
     width: 100%;
-    height: 480px;
-    text-align: center; }
-    .m-product .carousel img {
-      margin: 50px 30px; }
+    height: 6.0rem;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    overflow: hidden; }
+  .m-product .yearpro {
+    width: 100%;
+    height: 6rem;
+    position: relative;
+    box-sizing: border-box; }
   .m-product .yearlist {
     width: 100%;
-    height: 320px; }
+    height: 8.0rem; }
     .m-product .yearlist .menu {
-      width: 576px;
-      height: 192px;
+      width: 100%;
+      height: 4.8rem;
       overflow: hidden;
       margin: 0 auto; }
       .m-product .yearlist .menu .cursor {
         position: relative;
         z-index: 0;
-        width: 300px;
-        height: 70px;
+        width: 7.5rem;
+        height: 1.75rem;
         margin: 0 auto;
-        margin-top: 61px;
+        margin-top: 1.525rem;
         background-color: #FFF;
-        box-shadow: 1px 5px 10px #999;
-        border-radius: 35px;
+        box-shadow: 0.025rem 0.125rem 0.25rem #999;
+        border-radius: 0.875rem;
         filter: alpha(opacity=0.4);
         -moz-opacity: 0.4;
         -khtml-opacity: 0.4;
@@ -366,30 +501,89 @@ body {
         position: relative;
         z-index: 1;
         margin: 0 auto;
-        margin-top: -76px;
+        margin-top: -1.9rem;
         text-align: center;
         outline: none; }
         .m-product .yearlist .menu .options p {
-          height: 64px;
+          height: 1.6rem;
           margin: auto auto;
-          padding: 8px 0;
-          line-height: 64px;
+          padding: 0.2rem 0;
+          line-height: 1.6rem;
           font-weight: 600;
-          font-size: 40px;
+          font-size: 1.0rem;
           color: #A0A0A0; }
         .m-product .yearlist .menu .options .active {
-          font-size: 56px;
+          font-size: 1.4rem;
           color: #00A0E9; }
   .m-product .footer {
     width: 100%;
     background-color: #b5b5b5;
-    height: 100px; }
+    height: 2.0rem; }
+  .m-product #thirdmusic {
+    top: -1.1rem; }
+  .m-product .yearpro img {
+    width: 90px; }
+  .m-product .three_1 {
+    position: absolute;
+    left: 10%;
+    top: 60px; }
+  .m-product .three_3 {
+    position: absolute;
+    right: 10%;
+    top: 60px; }
+  .m-product .three_2 {
+    display: block;
+    margin: 20px auto;
+    margin-top: 0; }
+
+#signwall {
+  width: 60%;
+  margin: 2rem auto;
+  margin-bottom: 0;
+  display: block; }
+
+.sign form {
+  overflow: hidden;
+  width: 5000px;
+  height: 250px;
+  overflow: hidden; }
+
+.sign > a {
+  display: block;
+  width: 60%;
+  height: 40px;
+  margin: 0 auto;
+  margin-top: 100px;
+  text-align: center;
+  background-color: #00a0e9;
+  color: #fff;
+  text-decoration: none;
+  line-height: 40px;
+  letter-spacing: 2px;
+  border-radius: 7px; }
+
+.window {
+  width: 1500px;
+  height: 250px;
+  overflow-y: hidden;
+  list-style: none;
+  padding: 0;
+  float: left; }
+
+.window > li {
+  display: block;
+  float: left; }
+
+.window > li > img {
+  float: left;
+  height: 250px; }
 
 @charset "UTF-8";
 /* ==================================================
 <| title
 ================================================== */
 .m-title {
+  position: relative;
   /* ==============================================
 	<| all
 	============================================== */
@@ -417,7 +611,7 @@ body {
     margin-top: 2.64rem;
     width: 3.2rem;
     font-size: 0.63rem;
-    font-family: 楷体; }
+    font-family: '楷体'; }
   .m-title .e {
     width: 4.666667rem;
     height: 4.613333rem;
@@ -434,7 +628,7 @@ body {
     margin: auto;
     margin-top: 3.693333rem;
     font-size: 0.45rem;
-    font-family: 楷体; }
+    font-family: '楷体'; }
     .m-title .intro p:nth-child(1) {
       text-align: left; }
     .m-title .intro p:nth-child(2) {
@@ -451,7 +645,7 @@ body {
       text-align: center;
       font-size: 0.45rem;
       color: #0a6eff;
-      font-family: 楷体; }
+      font-family: '楷体'; }
   .m-title .fingerprint {
     position: relative;
     z-index: 0;
@@ -470,8 +664,25 @@ body {
     margin: auto;
     top: -0.8rem; }
     .m-title .logo img {
-      width: 100%;
-      height: 100%; }
+      width: 3rem;
+      display: block;
+      margin: 0 auto; }
+  .m-title #firstmusic {
+    top: -2.1rem; }
+
+.tosign > a {
+  display: block;
+  width: 60%;
+  height: 40px;
+  margin: 0 auto;
+  margin-top: 30px;
+  text-align: center;
+  background-color: #00a0e9;
+  color: #fff;
+  text-decoration: none;
+  line-height: 40px;
+  letter-spacing: 2px;
+  border-radius: 7px; }
 
 .m-words .wordWra {
   position: relative;

@@ -1,101 +1,107 @@
 /* ==================================================
 <| title
 ================================================== */
+
 .m-title {
-	/* ==============================================
+    position: relative;
+    /* ==============================================
 	<| all
 	============================================== */
-	* {
-		margin: 0px;
-		padding: 0px;
-		border: 0px;
-	}
-	div {
-		position: fixed;
-		width: 100%;
-		height: 100%;
-		top: 0px;
-		left: 0px;
-	}
-	/* ==============================================
+    * {
+        margin: 0px;
+        padding: 0px;
+        border: 0px;
+    }
+    div {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0px;
+    }
+    /* ==============================================
 	<| main
 	============================================== */
-	.title {
-		margin: auto;
-		margin-top: 2.64rem;
-		width: 3.2rem;
-		font-size: 0.63rem;
-		font-family: 楷体;
-	}
-	.e {
-		width: 4.666667rem;
-		height: 4.613333rem;
-		margin: auto;
-		margin-top: 1.253333rem;
-		img {
-			width: 100%;
-			height: 100%;
-		}
-	}
-	/* ==============================================
+    .title {
+        margin: auto;
+        margin-top: 2.64rem;
+        width: 3.2rem;
+        font-size: 0.63rem;
+        font-family: '楷体';
+    }
+    .e {
+        width: 4.666667rem;
+        height: 4.613333rem;
+        margin: auto;
+        margin-top: 1.253333rem;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    /* ==============================================
 	<| fingerprint
 	============================================== */
-	.intro {
-		position: relative;
-		z-index: 1;
-		width: 2.8rem;
-		height: 1.266667rem;
-		margin: auto;
-		margin-top: 3.693333rem;
-		font-size: 0.45rem;
-		font-family: 楷体;
-		p:nth-child(1) {
-			text-align: left;
-		}
-		p:nth-child(2) {
-			position: absolute;
-			top: 0.0rem;
-			right: 0.0rem;
-		}
-		p:nth-child(3) {
-			position: absolute;
-			bottom: 0.0rem;
-			left: 0.466667rem;
-		}
-		p:nth-child(4) {
-			position: relative;
-			top: -0.53rem;
-			text-align: center;
-			font-size: 0.45rem;
-			color: #0a6eff;
-			font-family: 楷体;
-		}
-	}
-	.fingerprint {
-		position: relative;
-		z-index: 0;
-		width: 1.173333rem;
-		height: 1.226667rem;
-		margin: auto;
-		top: -1.653333rem;
-		img {
-			display: none;
-			width: 100%;
-			height: 100%;
-		}
-	}
-	/* ==============================================
+    .intro {
+        position: relative;
+        z-index: 1;
+        width: 2.8rem;
+        height: 1.266667rem;
+        margin: auto;
+        margin-top: 3.693333rem;
+        font-size: 0.45rem;
+        font-family: '楷体';
+        p:nth-child(1) {
+            text-align: left;
+        }
+        p:nth-child(2) {
+            position: absolute;
+            top: 0.0rem;
+            right: 0.0rem;
+        }
+        p:nth-child(3) {
+            position: absolute;
+            bottom: 0.0rem;
+            left: 0.466667rem;
+        }
+        p:nth-child(4) {
+            position: relative;
+            top: -0.53rem;
+            text-align: center;
+            font-size: 0.45rem;
+            color: #0a6eff;
+            font-family: '楷体';
+        }
+    }
+    .fingerprint {
+        position: relative;
+        z-index: 0;
+        width: 1.173333rem;
+        height: 1.226667rem;
+        margin: auto;
+        top: -1.653333rem;
+        img {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    /* ==============================================
 	<| page-bottom
 	============================================== */
-	.logo {
-		position: relative;
-		width: 2.173333rem;
-		height: 0.746667rem;
-		margin: auto;
-		top: -0.8rem;
-		img {
-			width: 100%;
-			height: 100%;
-		}
-	}
+    .logo {
+        position: relative;
+        width: 2.173333rem;
+        height: 0.746667rem;
+        margin: auto;
+        top: -0.8rem;
+        img {
+            width: 3rem;
+            display: block;
+            margin: 0 auto;
+        }
+    }
+    #firstmusic {
+        top: -2.1rem;
+    }
 }
