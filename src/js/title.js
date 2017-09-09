@@ -30,6 +30,7 @@ function initializePageTitle() {
                 /* and swip to the next page */
                 setTimeout(function() {
                     swiper.slideNext(false);
+                    $(".m-title").removeClass("swiper-no-swiping");
                 }, 2000);
                 /* allow to scroll */
                 swiper.enableMousewheelControl();

@@ -4,6 +4,7 @@
 
 .m-history {
     width: 100%;
+    position: relative;
     /* ==============================================
 	<| mixin
 	============================================== */
@@ -44,12 +45,6 @@
             text-align: center;
             font-size: 0.9rem * $rate;
             color: #000;
-        }
-        /* music */
-        .music {
-            float: right;
-            margin-top: 1.4rem - 2.0rem - (1.0rem * $rate);
-            margin-right: 0.7rem;
         }
         /* title-dialog */
         .title-dialog {

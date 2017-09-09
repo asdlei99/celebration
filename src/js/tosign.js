@@ -28,26 +28,26 @@ function InitThis() {
     ctx.fillRect(0, 0, canvas_width, 250);
 
     var $canvas = $('#myCanvas');
-    $canvas[0].addEventListener('touchstart', function(e){
+    $canvas[0].addEventListener('touchstart', function(e) {
         mousePressed = true;
         e = e.touches[0];
         lastX = e.pageX - $(this).offset().left;
         lastY = e.pageY - $(this).offset().top;
         Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
     });
-    $canvas[0].addEventListener('touchmove', function(e){
+    $canvas[0].addEventListener('touchmove', function(e) {
         if (mousePressed) {
             e = e.touches[0];
             Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
         }
     });
-    $canvas[0].addEventListener('touchend', function(){
+    $canvas[0].addEventListener('touchend', function() {
         mousePressed = false;
     });
-    $canvas.mouseup(function (e) {
+    $canvas.mouseup(function(e) {
         mousePressed = false;
     });
-        $canvas.mouseleave(function (e) {
+    $canvas.mouseleave(function(e) {
         mousePressed = false;
     });
 }
@@ -55,7 +55,7 @@ function InitThis() {
 //清空画板
 function clearBoard() {
     ctx.fillStyle = "#fff";
-    ctx.fillRect(0, 0, canvas_width,250);
+    ctx.fillRect(0, 0, canvas_width, 250);
 }
 
 function UploadPic() {
@@ -70,7 +70,7 @@ function UploadPic() {
                 alert("上传成功！");
                 window.location.reload();
             } else {
-                alert(String(data));
+                alert("上传失败！请重试！");
             }
         }
     })
