@@ -1,5 +1,5 @@
-.tosign>a{
-	display: block;
+.tosign>a {
+    display: block;
     width: 60%;
     height: 40px;
     margin: 0 auto;
@@ -11,4 +11,8 @@
     line-height: 40px;
     letter-spacing: 2px;
     border-radius: 7px;
+}
+
+.canvas {
+    border: 1px solid #000;
 }
