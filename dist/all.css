@@ -16,6 +16,15 @@
 /* ==================================================
 <| swiper
 ================================================== */
+* {
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -o-user-select: none; }
+
 .swiper-slide {
   background: url(./imgs/bg.png) repeat-y 0 0;
   background-size: 100%; }
@@ -448,8 +457,7 @@ body {
     width: 100%;
     height: 1.0rem;
     padding-top: 1.0rem;
-    /* title */
-    /* music */ }
+    /* title */ }
     .m-product .page-top .title {
       display: block;
       width: 8.0rem;
@@ -458,15 +466,11 @@ body {
       text-align: center;
       font-size: 0.9rem;
       color: #000; }
-    .m-product .page-top .music {
-      float: right;
-      margin-top: -0.6rem;
-      margin-right: 0.7rem; }
   .m-product .carousel {
     width: 100%;
     height: 6.0rem;
     text-align: center;
-    margin-top: 2rem;
+    padding-top: 2rem;
     margin-bottom: 1rem;
     overflow: hidden; }
   .m-product .yearpro {
@@ -614,7 +618,7 @@ body {
     left: 0px; }
   .m-title .title {
     margin: auto;
-    margin-top: 2.64rem;
+    padding-top: 2.64rem;
     width: 3.2rem;
     font-size: 0.63rem;
     font-family: '楷体'; }
