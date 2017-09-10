@@ -33,11 +33,12 @@
 }
 
 .music {
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 20px;
     width: 32px;
     animation: rotate 2s infinite linear;
+    z-index: 1000;
 }
 
 @keyframes rotate {
