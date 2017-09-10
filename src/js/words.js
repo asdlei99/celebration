@@ -27,20 +27,29 @@ window.addEventListener('load', function() {
         // setTimeout(drawText,0);
         var timer;
         var lock = false;
-
+        var $tipIcon = $('.icon-finger');
         wordWra.addEventListener('touchstart', function(e) {
             e.stopPropagation();
             if (lock) return;
             lock = true;
+            $tipIcon.hide();
             timer = setInterval(function() {
                 if (progress >= fullProgress) {
                     clearInterval(timer);
                     drawText(function() {
                         progress = 0;
+                        $tipIcon.removeClass('stage'+stage);
                         stage++;
-                        if (stage <= 3) lock = false;
+                        $tipIcon.addClass('stage'+stage);
+                        if (stage <= 3) {
+                            lock = false;
+                            setTimeout(function() {
+                                $tipIcon.show();
+                            }, 500);
+                        }
                         else {
                             pageLock = false;
+                            $tipIcon.hide();
                         }
                     });
                 } else {
@@ -53,6 +62,7 @@ window.addEventListener('load', function() {
             if (timer) {
                 clearInterval(timer);
                 lock = false;
+                // if(stage<=3) $tipIcon.show();
             }
         });
         wordSlide.addEventListener('touchmove', function(e) {

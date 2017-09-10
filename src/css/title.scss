@@ -83,7 +83,7 @@
         img {
             display: none;
             width: 100%;
-            height: 100%;
+            transform: scale(.8);
         }
     }
     /* ==============================================
@@ -103,5 +103,19 @@
     }
     #firstmusic {
         top: -2.1rem;
+    }
+    .bling {
+        animation: bling 2s ease-in-out infinite;
+    }
+    @keyframes bling {
+        0% {
+            transform: scale(0.8);
+        }
+        50% {
+            transform: scale(.72);
+        }
+        100% {
+            transform: scale(0.8);
+        }
     }
 }

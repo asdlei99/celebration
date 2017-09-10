@@ -33,11 +33,12 @@
 }
 
 .music {
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 20px;
     width: 32px;
     animation: rotate 2s infinite linear;
+    z-index: 1000;
 }
 
 @keyframes rotate {
@@ -47,4 +48,13 @@
     to {
         transform: rotate(360deg);
     }
+}
+
+* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }

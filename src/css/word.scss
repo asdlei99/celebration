@@ -7,6 +7,44 @@
       position: absolute;
       overflow: hidden;
     }
+    .icon-finger{
+      position: absolute;
+      right: 20px;
+      top: 20px;
+    }
+    .stage1{
+      animation: firstSlide 1.8s ease-out infinite;      
+    }
+    .stage2{
+      animation: secondSlide 1.8s ease-out infinite;      
+    }
+    .stage3{
+      animation: thirdSlide 1.8s ease-out infinite;      
+    }
+  }
+  @keyframes firstSlide {
+    from{
+      transform: translate3d(130px,110px,0);
+    }
+    to{
+      transform: translate3d(0,-20px,0);
+    }
+  }
+  @keyframes secondSlide {
+    from{
+      transform: translate3d(0,-20px,0);
+    }
+    to{
+      transform: translate3d(-40px,100px,0);
+    }
+  }
+  @keyframes thirdSlide {
+    from{
+      transform: translate3d(-40px,100px,0);
+    }
+    to{
+      transform: translate3d(130px,110px,0);
+    }
   }
   .first{
     bottom: 65px;
@@ -41,15 +79,6 @@
       transition: opacity 1s ease-in-out;
       position: absolute;
       bottom: 0;
-    }
-    .single{
-      
-    }
-    .climber{
-
-    }
-    .runner{
-
     }
   }
 

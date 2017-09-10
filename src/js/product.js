@@ -75,6 +75,8 @@ function initializeMenu(menu, list) {
 /* ==================================================
 <| scrollEffect
 ================================================== */
+$(".yearpro").height($(".carousel").height());
+
 function scrollEffect(menu, event, direction) {
     /* initialize */
     var key = direction || event.which;
