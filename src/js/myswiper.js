@@ -3,20 +3,17 @@
 ================================================== */
 var swiper;
 window.addEventListener('load', function() {
-	// document.querySelector('body').addEventListener('touchmove', function(event) {
-	// 	event.preventDefault();
-	// });
 	swiper = new Swiper('.swiper-container', {
 		direction: 'vertical',
 		slidesPerView: 'auto',
-		mousewheelControl: true,
-		onSlideChangeEnd: function(){
-			pagelock = false;
-		}
+		mousewheelControl: false,
+		// onSlideChangeEnd: function(){
+		// 	pagelock = false;
+		// }
 	});
 	var startScroll, touchStart, touchCurrent;
 	var isx5 = isWechatOrQQ();
-	var pagelock = false;
+	// var pagelock = false;
 	swiper.slides.on('touchstart', function(e) {
 		startScroll = this.scrollTop;
 		touchStart = e.targetTouches[0].pageY;
@@ -34,15 +31,15 @@ window.addEventListener('load', function() {
 				);
 		if (onlyScrolling) {
 			e.stopPropagation();
-		}else{
-			if(isx5 && !pagelock){
-				pagelock = true;
-				if(startScroll === 0){// 往上滑
-					swiper.slidePrev();
-				}else{
-					swiper.slideNext();
-				}
-			}
+		// }else{
+		// 	if(isx5 && !pagelock){
+				// pagelock = true;
+				// if(startScroll === 0){// 往上滑
+				// 	swiper.slidePrev();
+				// }else{
+				// 	swiper.slideNext();
+				// }
+			// }
 		}
 	}, true);
 	// 横屏监听
