@@ -18,61 +18,61 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 */
 .icon-EUX {
   background-image: url(sprite.png);
-  background-position: -925px -450px;
+  background-position: -716px -555px;
   width: 150px;
   height: 150px;
 }
 .icon-XJTUknow {
   background-image: url(sprite.png);
-  background-position: -925px -300px;
+  background-position: -600px -866px;
   width: 150px;
   height: 150px;
 }
 .icon-developer {
   background-image: url(sprite.png);
-  background-position: -600px -866px;
+  background-position: -450px -866px;
   width: 150px;
   height: 150px;
 }
 .icon-e_monthly {
   background-image: url(sprite.png);
-  background-position: -1075px 0px;
+  background-position: -300px -716px;
   width: 150px;
   height: 150px;
 }
 .icon-eeyesvideo {
   background-image: url(sprite.png);
-  background-position: -716px -555px;
+  background-position: -925px -300px;
   width: 150px;
   height: 150px;
 }
 .icon-ei_car {
   background-image: url(sprite.png);
-  background-position: 0px -716px;
+  background-position: -900px -866px;
   width: 150px;
   height: 150px;
 }
 .icon-ekuaixia {
   background-image: url(sprite.png);
-  background-position: -150px -716px;
+  background-position: -716px -405px;
   width: 150px;
   height: 150px;
 }
 .icon-exuetang {
   background-image: url(sprite.png);
-  background-position: -300px -716px;
+  background-position: 0px -716px;
   width: 150px;
   height: 150px;
 }
 .icon-eyunpan {
   background-image: url(sprite.png);
-  background-position: -450px -716px;
+  background-position: -150px -716px;
   width: 150px;
   height: 150px;
 }
 .icon-e快下 {
   background-image: url(sprite.png);
-  background-position: -600px -716px;
+  background-position: -450px -716px;
   width: 150px;
   height: 150px;
 }
@@ -84,19 +84,19 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-gitlab {
   background-image: url(sprite.png);
-  background-position: -925px 0px;
+  background-position: -750px -716px;
   width: 150px;
   height: 150px;
 }
 .icon-know_weekly {
   background-image: url(sprite.png);
-  background-position: -925px -150px;
+  background-position: -925px 0px;
   width: 150px;
   height: 150px;
 }
 .icon-library {
   background-image: url(sprite.png);
-  background-position: -716px -405px;
+  background-position: -925px -150px;
   width: 150px;
   height: 150px;
 }
@@ -108,31 +108,31 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-lovevideo {
   background-image: url(sprite.png);
-  background-position: -925px -600px;
+  background-position: -925px -450px;
   width: 150px;
   height: 150px;
 }
 .icon-market {
   background-image: url(sprite.png);
-  background-position: 0px -866px;
+  background-position: -925px -600px;
   width: 150px;
   height: 150px;
 }
 .icon-news {
   background-image: url(sprite.png);
-  background-position: -150px -866px;
+  background-position: 0px -866px;
   width: 150px;
   height: 150px;
 }
 .icon-qiahng {
   background-image: url(sprite.png);
-  background-position: -300px -866px;
+  background-position: -150px -866px;
   width: 150px;
   height: 150px;
 }
 .icon-screen {
   background-image: url(sprite.png);
-  background-position: -450px -866px;
+  background-position: -300px -866px;
   width: 150px;
   height: 150px;
 }
@@ -150,7 +150,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-ticket {
   background-image: url(sprite.png);
-  background-position: -900px -866px;
+  background-position: -750px -866px;
   width: 150px;
   height: 150px;
 }
@@ -162,13 +162,13 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-word_street {
   background-image: url(sprite.png);
-  background-position: -750px -866px;
+  background-position: -1075px 0px;
   width: 150px;
   height: 150px;
 }
 .icon-yanzhi {
   background-image: url(sprite.png);
-  background-position: -750px -716px;
+  background-position: -600px -716px;
   width: 150px;
   height: 150px;
 }
