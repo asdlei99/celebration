@@ -2,8 +2,8 @@
 <| $(document).ready
 ================================================== */
 window.addEventListener('load', function() { //$(document).ready(function() {
-    initializePageTitle();
-})
+        initializePageTitle();
+    })
     /* ==================================================
     <| initializePageTitle
     ================================================== */
@@ -18,23 +18,23 @@ function initializePageTitle() {
     button.on('touchstart', (function(event) { /* mousedown对电脑网页正常，手机页面有奇怪的效果(?) */
         /* set timer */
         event.preventDefault();
-        button.css({visibility: 'hidden'});
+        button.css({ visibility: 'hidden' });
         $fingerprint.show();
         $fingerprint.addClass("bling");
         printing = setTimeout(function() {
             $fingerprint.removeClass("bling");
-            // $(".m-title").parent().removeClass("swiper-no-swiping");
+            $(".m-title").parent().removeClass("swiper-no-swiping");
             swiper.slideNext(false);
-            $('.intro').css({visibility: 'hidden'});
+            $('.intro').css({ visibility: 'hidden' });
             lock = true;
         }, 2000);
     }));
     button.on("touchend", function() {
         clearTimeout(printing);
-        if(!lock) {
+        if (!lock) {
             $fingerprint.hide();
             $fingerprint.removeClass("bling");
-            button.css({visibility: 'visible'});
+            button.css({ visibility: 'visible' });
         }
     });
 }

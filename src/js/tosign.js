@@ -1,7 +1,7 @@
 var mousePressed = false;
 var lastX, lastY;
 var ctx;
-var canvas_width = $(window).width()-2;// 考虑边框
+var canvas_width = $(window).width() - 2; // 考虑边框
 var canvas_height = "250px";
 
 function Draw(x, y, isDown) {

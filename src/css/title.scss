@@ -93,7 +93,7 @@
         position: relative;
         width: 2.173333rem;
         height: 0.746667rem;
-        margin: auto;
+        margin: 35%;
         top: -0.8rem;
         img {
             width: 3rem;
@@ -104,17 +104,17 @@
     #firstmusic {
         top: -2.1rem;
     }
-    .bling{
+    .bling {
         animation: bling 2s ease-in-out infinite;
     }
     @keyframes bling {
-        0%{
+        0% {
             transform: scale(0.8);
         }
-        50%{
+        50% {
             transform: scale(.72);
         }
-        100%{
+        100% {
             transform: scale(0.8);
         }
     }
