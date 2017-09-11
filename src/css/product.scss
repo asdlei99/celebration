@@ -3,6 +3,11 @@
 ================================================== */
 
 .m-product {
+    * {
+        margin: 0px;
+        padding: 0px;
+        border: 0px;
+    }
     width: 100%;
     position: relative;
     /* ==============================================
@@ -33,12 +38,6 @@
             font-size: 0.9rem;
             color: #000;
         }
-        /* music */
-        .music {
-            float: right;
-            margin-top: 1.4rem - 2.0rem;
-            margin-right: 0.7rem;
-        }
     }
     /* ==============================================
 	<| carousel
@@ -55,6 +54,7 @@
         width: 100%;
         position: relative;
         box-sizing: border-box;
+        overflow: hidden;
     }
     /* ==============================================
 	<| yearlist

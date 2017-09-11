@@ -91,15 +91,15 @@ function scrollEffect(menu, event, direction) {
         case 40:
             if (index >= 1) {
                 now--;
-                menu.animate({ marginTop: '+=' + rate + 'px' });
-                $("#pro2017").animate({ marginTop: -225 * index + 225 + 'px' });
+                menu.animate({ marginTop: '+=' + 1.75 + 'rem' });
+                $("#pro2017").animate({ marginTop: -6 * index + 6 + 'rem' });
             }
             break;
         case 38:
             if (index < 8) {
                 now++;
-                menu.animate({ marginTop: '-=' + rate + 'px' });
-                $("#pro2017").animate({ marginTop: -225 * index - 225 + 'px' });
+                menu.animate({ marginTop: '-=' + 1.75 + 'rem' });
+                $("#pro2017").animate({ marginTop: -6 * index - 6 + 'rem' });
             }
             break;
     }

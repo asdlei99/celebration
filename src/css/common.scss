@@ -8,6 +8,16 @@
 <| swiper
 ================================================== */
 
+*{
+    -webkit-user-select:none;//禁用文字选中 iOS
+    -webkit-touch-callout:none;//禁用系统默认菜单 iOS
+    -khtml-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    -o-user-select:none;
+}
+
 .swiper-slide {
     background: url(./imgs/bg.png) repeat-y 0 0;
     background-size: 100%;

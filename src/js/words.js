@@ -18,18 +18,19 @@ window.addEventListener('load', function() {
     var fullProgress = 25;
     var pageLock = true;
     var stage = 1;
-
+    var drawLock = false;
+    
     function init() {
         canvas = document.getElementById('canvas');
         ctx = canvas.getContext('2d');
         canvas.width = c_width;
         ctx.font = '18px KaiTi,STKaiti';
-        // setTimeout(drawText,0);
         var timer;
         var lock = false;
         var $tipIcon = $('.icon-finger');
         wordWra.addEventListener('touchstart', function(e) {
             e.stopPropagation();
+            e.preventDefault();
             if (lock) return;
             lock = true;
             $tipIcon.hide();
@@ -43,6 +44,7 @@ window.addEventListener('load', function() {
                         $tipIcon.addClass('stage'+stage);
                         if (stage <= 3) {
                             lock = false;
+                            drawLock = false;
                             setTimeout(function() {
                                 $tipIcon.show();
                             }, 500);
@@ -62,10 +64,10 @@ window.addEventListener('load', function() {
             if (timer) {
                 clearInterval(timer);
                 lock = false;
-                // if(stage<=3) $tipIcon.show();
             }
         });
         wordSlide.addEventListener('touchmove', function(e) {
+            e.preventDefault();
             if (pageLock) e.stopPropagation();
         });
     }
@@ -83,6 +85,8 @@ window.addEventListener('load', function() {
     }
 
     function drawText(callback) {
+        if(drawLock) return;
+        drawLock = true;// 避免绘制过程再次出发touch事件
         var i = 0, j=1;
         var fadeStep = 10;// 文字淡入step数，用于Tween
         var startPosition = (c_width - wordWidth * sentences[stage - 1].length) / 2;// 根据文字长度计算渲染起始位置
