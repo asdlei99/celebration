@@ -6,23 +6,26 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="lib/swiper.min.css">
     <link rel="stylesheet" href="all.css">
     <link rel="stylesheet" href="sprite.css">
-    <script src="http://cdn.static.runoob.com/libs/jquery/2.2.1/jquery.min.js"></script>
+    <script src="lib/jquery-3.2.1.min.js"></script>
 </head>
 
 <body>
     <div class="swiper-container">
+        <audio autoplay loop id="mp3">
+            <source src="bgm-mini.mp3" type="audio/mpeg">
+        </audio>
         <img class="music" src="imgs/music.png" alt="music">
         <div class="swiper-wrapper">
-            <div class="swiper-slide">
+            <div class="swiper-slide swiper-no-swiping">
                 <!--=include ./pages/title.html -->
             </div>
-            <div class="swiper-slide">
+            <div class="swiper-slide swiper-no-swiping" id="word">
                 <!--=include ./pages/words.html -->
             </div>
             <div class="swiper-slide">
@@ -37,12 +40,11 @@
             <div class="swiper-slide" id="sign">
                 <!--=include ./pages/sign.html -->
             </div>
-            <div class="swiper-slide swiper-no-swiping">
+            <div class="swiper-slide">
                 <!--=include ./pages/tosign.html -->
             </div>
         </div>
     </div>
-    <script src="lib/jquery.colorAnimations.js"></script>
     <script src="lib/swiper.min.js"></script>
     <script src="lib/Tween.js"></script>
     <script src="lib/flexible.debug.js"></script>

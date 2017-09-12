@@ -5,7 +5,6 @@ var swiper;
 window.addEventListener('load', function() {
 	swiper = new Swiper('.swiper-container', {
 		direction: 'vertical',
-		slidesPerView: 'auto',
 		mousewheelControl: false,
 		// onSlideChangeEnd: function(){
 		// 	pagelock = false;
@@ -31,7 +30,8 @@ window.addEventListener('load', function() {
 				);
 		if (onlyScrolling) {
 			e.stopPropagation();
-		// }else{
+		}
+		// else{
 		// 	if(isx5 && !pagelock){
 				// pagelock = true;
 				// if(startScroll === 0){// 往上滑
@@ -40,7 +40,7 @@ window.addEventListener('load', function() {
 				// 	swiper.slideNext();
 				// }
 			// }
-		}
+		// }
 	}, true);
 	// 横屏监听
 	var updateOrientation = function() {

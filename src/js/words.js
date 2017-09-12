@@ -12,11 +12,10 @@ window.addEventListener('load', function() {
     var firstWra = document.querySelector('.first');
     var secondWra = document.querySelector('.second');
     var thirdWra = document.querySelector('.third');
-    var wordSlide = document.querySelector('.swiper-slide');
+    var wordSlide = document.querySelector('#word');
     var imgs = document.querySelectorAll('.imgWra img');
     var progress = 0;
     var fullProgress = 25;
-    var pageLock = true;
     var stage = 1;
     var drawLock = false;
     
@@ -50,7 +49,7 @@ window.addEventListener('load', function() {
                             }, 500);
                         }
                         else {
-                            pageLock = false;
+                            $('#word').removeClass('swiper-no-swiping');
                             $tipIcon.hide();
                         }
                     });
@@ -65,10 +64,6 @@ window.addEventListener('load', function() {
                 clearInterval(timer);
                 lock = false;
             }
-        });
-        wordSlide.addEventListener('touchmove', function(e) {
-            e.preventDefault();
-            if (pageLock) e.stopPropagation();
         });
     }
 

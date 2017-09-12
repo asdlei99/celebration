@@ -7,7 +7,7 @@ var toleft = $(".window li img").width();
 var win_width = size * toleft + "px";
 var margin_left;
 var left1, left2, left3;
-var play_clone;
+var play_clone, m;
 
 $(".window").css("width", win_width);
 

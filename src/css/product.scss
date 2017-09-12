@@ -46,7 +46,7 @@
         width: 100%;
         height: 6.0rem;
         text-align: center;
-        margin-top: 2rem;
+        margin-top: 1rem;
         margin-bottom: 1rem;
         overflow: hidden;
     }
@@ -77,22 +77,27 @@
     #thirdmusic {
         top: -1.1rem;
     }
-    .yearpro img {
-        width: 90px;
+    .yearpro .icon {
+        transform: scale(.6);
     }
     .three_1 {
         position: absolute;
-        left: 10%;
-        top: 60px;
+        left: 5%;
+        top: 50px;
     }
     .three_3 {
         position: absolute;
-        right: 10%;
-        top: 60px;
+        right: 5%;
+        top: 50px;
     }
     .three_2 {
         display: block;
-        margin: 20px auto;
-        margin-top: 0;
+        margin: 0 auto;
+    }
+    .three_4{
+        position: absolute;
+        left: 50%;
+        margin-left: -75px;
+        top: 100px;
     }
 }

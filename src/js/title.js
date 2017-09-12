@@ -15,7 +15,7 @@ function initializePageTitle() {
     var $fingerprint = $(".fingerprint img");
     var lock = false;
     /* if keep printing */
-    button.on('touchstart', (function(event) { /* mousedown对电脑网页正常，手机页面有奇怪的效果(?) */
+    button.on('touchstart', (function(event) {
         /* set timer */
         event.preventDefault();
         button.css({ visibility: 'hidden' });

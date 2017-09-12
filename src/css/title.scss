@@ -3,7 +3,6 @@
 ================================================== */
 
 .m-title {
-    position: relative;
     /* ==============================================
 	<| all
 	============================================== */
@@ -12,26 +11,18 @@
         padding: 0px;
         border: 0px;
     }
-    div {
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        top: 0px;
-        left: 0px;
-    }
     /* ==============================================
 	<| main
 	============================================== */
     .title {
         margin: auto;
-        padding-top: 2.64rem;
+        padding-top: 1.64rem;
         width: 3.2rem;
         font-size: 0.63rem;
         font-family: '楷体';
     }
     .e {
-        width: 4.666667rem;
-        height: 4.613333rem;
+        width: 3.666667rem;
         margin: auto;
         margin-top: 1.253333rem;
         img {
@@ -65,8 +56,10 @@
             left: 0.466667rem;
         }
         p:nth-child(4) {
-            position: relative;
-            top: -0.53rem;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
             text-align: center;
             font-size: 0.45rem;
             color: #0a6eff;
@@ -90,11 +83,10 @@
 	<| page-bottom
 	============================================== */
     .logo {
-        position: relative;
-        width: 2.173333rem;
-        height: 0.746667rem;
-        margin: 35%;
-        top: -0.8rem;
+        position: absolute;
+        bottom: .8rem;
+        left: 50%;
+        margin-left: -1.5rem;
         img {
             width: 3rem;
             display: block;
