@@ -4,7 +4,7 @@ window.addEventListener('load', function() {
     var ctx;
     var canvas_width = $(window).width() - 2; // 考虑边框
     var canvas_height = "250px";
-    
+
     function Draw(x, y, isDown) {
         if (isDown) {
             ctx.beginPath();
@@ -19,7 +19,7 @@ window.addEventListener('load', function() {
         lastX = x;
         lastY = y;
     }
-    
+
     function InitThis() {
         ctx = document.getElementById('myCanvas').getContext("2d");
         var pic0 = document.getElementById('myCanvas');
@@ -27,7 +27,7 @@ window.addEventListener('load', function() {
         pic0.height = 250;
         ctx.fillStyle = 'rgba(255, 255, 255, 0)';
         ctx.fillRect(0, 0, canvas_width, 250);
-    
+
         var $canvas = $('#myCanvas');
         $canvas[0].addEventListener('touchstart', function(e) {
             mousePressed = true;
@@ -53,29 +53,29 @@ window.addEventListener('load', function() {
             mousePressed = false;
         });
     }
-    
+
     //清空画板
     function clearBoard() {
         ctx.clearRect(0, 0, canvas_width, 250);
     }
-    
-    function UploadPic() {
-        var Pic = document.getElementById("myCanvas").toDataURL("image/png", 0.5);
-        $.ajax({
-            type: 'POST',
-            url: './api/index.php?name=upload',
-            data: { 'data': Pic },
-            contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-            success: function(data) {
-                if (data == -1) {
-                    alert("上传成功！");
-                    window.location.reload();
-                } else {
-                    alert("上传失败！请重试！");
-                }
-            }
-        })
-    }
-    
+
     InitThis();
 })
+
+function UploadPic() {
+    var Pic = document.getElementById("myCanvas").toDataURL("image/png", 0.5);
+    $.ajax({
+        type: 'POST',
+        url: './api/index.php?name=upload',
+        data: { 'data': Pic },
+        contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+        success: function(data) {
+            if (data == -1) {
+                alert("上传成功！");
+                window.location.reload();
+            } else {
+                alert("上传失败！请重试！");
+            }
+        }
+    })
+}
