@@ -1,3 +1,9 @@
 node_modules/
 *.DS_Store
-dist/
+dist/imgs
+dist/lib
+dist/index.html
+dist/all.js
+dist/all.css
+dist/sprite.css
+dist/sprite.png
