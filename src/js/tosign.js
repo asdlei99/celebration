@@ -37,6 +37,7 @@ function InitThis() {
     });
     $canvas[0].addEventListener('touchmove', function(e) {
         e.stopPropagation();
+        e.preventDefault();
         if (mousePressed) {
             e = e.touches[0];
             Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
