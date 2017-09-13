@@ -1,12 +1,15 @@
 /* ==================================================
 <| $(document).ready
 ================================================== */
-window.addEventListener('load', function() { //$(document).ready(function() {
-        initializePageTitle();
-    })
-    /* ==================================================
-    <| initializePageTitle
-    ================================================== */
+$(document).ready(function() {
+    $(".onloading").fadeOut();
+});
+window.addEventListener('load', function() {
+    initializePageTitle();
+});
+/* ==================================================
+<| initializePageTitle
+================================================== */
 function initializePageTitle() {
     /* fingerprinting args */
     var timer = 0;

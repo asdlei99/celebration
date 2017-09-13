@@ -10,13 +10,6 @@
 	============================================== */
     @import "mixin.scss";
     /* ==============================================
-	<| header
-	============================================== */
-    .header {
-        @include div-border;
-        height: 1.0rem;
-    }
-    /* ==============================================
 	<| media
 	============================================== */
     $rate: 200;
@@ -207,10 +200,20 @@
         }
     }
     /* ==============================================
-	<| footer
+	<| page-bottom
 	============================================== */
-    .footer {
-        @include div-border;
+    .page-bottom {
         height: 2.0rem;
+        text-align: center;
+        .nxtpage {
+            @include opacity(0.8);
+            width: 200px;
+            height: 80px;
+            outline: none;
+            background-color: #777777;
+            &:hover {
+                background-color: #999999;
+            }
+        }
     }
 }

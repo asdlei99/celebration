@@ -54,7 +54,7 @@ window.addEventListener('load', function() {
                         }
                     });
                 } else {
-                    progress++;
+                    progress += 2;
                     fill(stage);
                 }
             }, 100);
