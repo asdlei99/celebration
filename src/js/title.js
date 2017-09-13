@@ -2,7 +2,9 @@
 <| $(document).ready
 ================================================== */
 $(document).ready(function() {
-    $(".onloading").fadeOut();
+    setTimeout(function() {
+        $(".onloading").fadeOut();
+    }, 1000);
 });
 window.addEventListener('load', function() {
     initializePageTitle();
