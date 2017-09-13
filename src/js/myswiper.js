@@ -3,9 +3,16 @@
 ================================================== */
 var swiper;
 window.addEventListener('load', function() {
+	var firstLoad = true;
 	swiper = new Swiper('.swiper-container', {
 		direction: 'vertical',
 		mousewheelControl: false,
+		onSlideChangeEnd: function(swiper){
+				if(swiper.activeIndex === 5){
+					if(firstLoad) initSignature();
+					firstLoad = false;
+				} //切换结束时，告诉我现在是第几个slide
+		}
 	});
 	var startScroll, touchStart, touchCurrent;
 	var isx5 = isWechatOrQQ();

@@ -11,7 +11,9 @@ var play_clone, m;
 var $window = $(".window");
 
 $window.css("width", win_width);
-
+$('#signBtn').click(function() {
+    swiper.slideNext();
+});
 var key1 = 0;
 var key2 = 0;
 var key3 = 0;
@@ -47,38 +49,42 @@ function autoplay3() {
 }
 
 //获取每次img的src储存到数组中
-function Download() {
-    var srcArray = new Array();
-    var i = 0;
-    $(".picc").each(function() {
-        srcArray[i] = $(this)[0].src;
-        i++;
-    });
+// function Download() {
+//     var srcArray = new Array();
+//     var i = 0;
+//     $(".picc").each(function() {
+//         srcArray[i] = $(this)[0].src;
+//         i++;
+//     });
+// }
+
+// Download();
+
+function initSignature(){// 在swiper滑动时监听
+    $.ajax({
+        type: 'POST',
+        url: 'api/index.php?name=download',
+        success: function(data) {
+            $window.html('');
+            data = JSON.parse(data);
+            //每次获取到url的时候新建一个图片
+            var len = data.length;
+            if(!len) return;
+            for (var i = 0; i < len; i++) {
+                var new_img = '<li><img src="' + data[i] + '"></li>';
+                $window.append(new_img);
+                size++;
+                $window.width(size * 150);
+                $(".play1").width(size * 150);
+                m = 500 * size;
+            }
+            $window.append(first_pic);
+            $(".window li img").css("width", "150px");
+            margin_left = -1 * size * toleft + 'px';
+            $(".play1").append(play_clone);
+            var timer1 = setInterval(autoplay1, 0.8 * m);
+            var timer2 = setInterval(autoplay2, 1.4 * m);
+            var timer3 = setInterval(autoplay3, m);
+        },
+    })
 }
-
-Download();
-
-$.ajax({
-    type: 'POST',
-    url: 'api/index.php?name=download',
-    success: function(data) {
-        data = JSON.parse(data);
-        //每次获取到url的时候新建一个图片
-        var len = data.length;
-        for (var i = 0; i < len; i++) {
-            var new_img = '<li><img src="' + data[i] + '"></li>';
-            $window.append(new_img);
-            size++;
-            $window.width(size * 150);
-            $(".play1").width(size * 150);
-            m = 500 * size;
-        }
-        $window.append(first_pic);
-        $(".window li img").css("width", "150px");
-        margin_left = -1 * size * toleft + 'px';
-        $(".play1").append(play_clone);
-        var timer1 = setInterval(autoplay1, 0.8 * m);
-        var timer2 = setInterval(autoplay2, 1.4 * m);
-        var timer3 = setInterval(autoplay3, m);
-    },
-})

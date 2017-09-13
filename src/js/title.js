@@ -4,7 +4,7 @@
 $(document).ready(function() {
     setTimeout(function() {
         $(".onloading").fadeOut();
-    }, 500);
+    }, 1000);
 });
 window.addEventListener('load', function() {
     initializePageTitle();

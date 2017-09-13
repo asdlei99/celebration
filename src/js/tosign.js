@@ -71,7 +71,7 @@ function UploadPic() {
         success: function(data) {
             if (data == -1) {
                 alert("上传成功！");
-                window.location.reload();
+                initSignature();
                 swiper.slidePrev(false);
             } else {
                 alert("上传失败！请重试！");
