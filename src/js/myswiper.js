@@ -7,8 +7,8 @@ window.addEventListener('load', function() {
 	swiper = new Swiper('.swiper-container', {
 		direction: 'vertical',
 		mousewheelControl: false,
-		onSlideChangeEnd: function(swiper){
-				if(swiper.activeIndex === 5){
+		onSlideNextStart: function(swiper){
+				if(swiper.activeIndex === 4){
 					if(firstLoad) initSignature();
 					firstLoad = false;
 				} //切换结束时，告诉我现在是第几个slide
