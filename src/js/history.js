@@ -10,7 +10,7 @@ $(document).ready(function() {
 function initializePageHistory() {
     /* next-page button */
     var button = $(".nxtpage");
-    buttom.bind("click", function() {
+    button.bind("click", function() {
         swiper.slideNext(false);
     });
     /* auto-scrolling */

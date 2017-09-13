@@ -208,12 +208,14 @@
         .nxtpage {
             @include opacity(0.8);
             width: 200px;
-            height: 80px;
+            height: 40px;
             outline: none;
-            background-color: #777777;
-            &:hover {
-                background-color: #999999;
-            }
+            text-align: center;
+            background-color: #00a0e9;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 2px;
+            border-radius: 7px;
         }
     }
 }

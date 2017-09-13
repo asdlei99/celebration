@@ -6,7 +6,7 @@ window.addEventListener('load', function() {
         '路不曾平，志不曾移',
         '少年郎，犹记旧时新月梦'
     ];
-    var wordWidth = 18;
+    var wordWidth = 36;
     var c_width = window.innerWidth;
     var wordWra = document.querySelector('.wordWra');
     var firstWra = document.querySelector('.first');
@@ -22,8 +22,8 @@ window.addEventListener('load', function() {
     function init() {
         canvas = document.getElementById('canvas');
         ctx = canvas.getContext('2d');
-        canvas.width = c_width;
-        ctx.font = '18px KaiTi,STKaiti';
+        canvas.width = c_width * 2;
+        ctx.font = '36px KaiTi,STKaiti';
         var timer;
         var lock = false;
         var $tipIcon = $('.icon-finger');
@@ -84,10 +84,10 @@ window.addEventListener('load', function() {
         drawLock = true;// 避免绘制过程再次出发touch事件
         var i = 0, j=1;
         var fadeStep = 10;// 文字淡入step数，用于Tween
-        var startPosition = (c_width - wordWidth * sentences[stage - 1].length) / 2;// 根据文字长度计算渲染起始位置
+        var startPosition = (c_width * 2 - wordWidth * sentences[stage - 1].length) / 2;// 根据文字长度计算渲染起始位置
         if (stage > 1) imgs[stage - 2].style.opacity = 0;
         imgs[stage - 1].style.opacity = 1;
-        ctx.clearRect(0, 0, c_width, 40);// 渲染下一幕文字时清空画布
+        ctx.clearRect(0, 0, c_width * 2, 80);// 渲染下一幕文字时清空画布
         var clock = setInterval(function() {
             if (!sentences[stage - 1][i] && j===fadeStep) {// 当前文字渲染结束调用回调
                 clearInterval(clock);
