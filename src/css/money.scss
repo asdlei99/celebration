@@ -2,6 +2,7 @@
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
+    height: 100%;
     h1 {
         margin: 10px auto;
         font-size: 30px;
@@ -39,6 +40,7 @@
 
 .progress {
     width: 100%;
+    height: 2rem;
 }
 
 .m-money>a {
@@ -46,7 +48,7 @@
     width: 60%;
     height: 40px;
     margin: 0 auto;
-    margin-top: 0.7rem;
+    margin-top: 1.5rem;
     text-align: center;
     background-color: #00a0e9;
     color: #fff;
