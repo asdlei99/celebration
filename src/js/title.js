@@ -4,7 +4,7 @@
 $(document).ready(function() {
     setTimeout(function() {
         $(".onloading").fadeOut();
-    }, 1000);
+    }, 0);
 });
 window.addEventListener('load', function() {
     initializePageTitle();
@@ -16,30 +16,30 @@ function initializePageTitle() {
     /* fingerprinting args */
     var timer = 0;
     var printing;
-    var button = $(".m-title").find(".mark");
-    var $fingerprint = $(".fingerprint img");
+    var $intro = $(".intro");
+    var $fingerprint = $(".fingerprint");
     var lock = false;
     /* if keep printing */
-    button.on('touchstart', (function(event) {
+    $intro.on('touchstart', (function(event) {
         /* set timer */
         event.preventDefault();
-        button.css({ visibility: 'hidden' });
-        $fingerprint.show();
+        $intro.css({ visibility: 'hidden' });
+        $fingerprint.css({ visibility: 'visible' });
         $fingerprint.addClass("bling");
         printing = setTimeout(function() {
             $fingerprint.removeClass("bling");
             $(".m-title").parent().removeClass("swiper-no-swiping");
             swiper.slideNext(false);
-            $('.intro').css({ visibility: 'hidden' });
+            $intro.hide();
             lock = true;
         }, 2000);
     }));
-    button.on("touchend", function() {
+    $intro.on("touchend", function() {
         clearTimeout(printing);
         if (!lock) {
-            $fingerprint.hide();
+            $fingerprint.css({ visibility: 'hidden' });
             $fingerprint.removeClass("bling");
-            button.css({ visibility: 'visible' });
+            $intro.css({ visibility: 'visible' });
         }
     });
 }

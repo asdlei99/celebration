@@ -33,64 +33,37 @@
     /* ==============================================
 	<| fingerprint
 	============================================== */
-    .intro {
+    .pageBottom{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+    }
+    .mark{
+        color: #0a6eff;
+    }
+    .fingerWra{
         position: relative;
-        z-index: 1;
-        width: 2.8rem;
-        height: 1.266667rem;
-        margin: auto;
-        margin-top: 3.693333rem;
-        font-size: 0.45rem;
-        font-family: '楷体';
-        p:nth-child(1) {
-            text-align: left;
-        }
-        p:nth-child(2) {
-            position: absolute;
-            top: 0.0rem;
-            right: 0.0rem;
-        }
-        p:nth-child(3) {
-            position: absolute;
-            bottom: 0.0rem;
-            left: 0.466667rem;
-        }
-        p:nth-child(4) {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            font-size: 0.45rem;
-            color: #0a6eff;
-            font-family: '楷体';
-        }
+        text-align: center;
+        margin-bottom: 26px;
+    }
+    .intro{
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
     }
     .fingerprint {
-        position: relative;
-        z-index: 0;
         width: 1.173333rem;
         height: 1.226667rem;
-        margin: auto;
-        top: -1.653333rem;
-        img {
-            display: none;
-            width: 100%;
-            transform: scale(.8);
-        }
+        visibility: hidden;
     }
     /* ==============================================
 	<| page-bottom
 	============================================== */
     .logo {
-        position: absolute;
-        bottom: .8rem;
-        left: 50%;
-        margin-left: -1.5rem;
+        padding-bottom: 20px;
         img {
             width: 3rem;
-            display: block;
-            margin: 0 auto;
         }
     }
     #firstmusic {
@@ -101,13 +74,13 @@
     }
     @keyframes bling {
         0% {
-            transform: scale(0.8);
+            transform: scale(1.0);
         }
         50% {
-            transform: scale(.72);
+            transform: scale(.92);
         }
         100% {
-            transform: scale(0.8);
+            transform: scale(1.0);
         }
     }
 }
