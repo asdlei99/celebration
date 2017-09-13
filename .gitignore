@@ -1,5 +1,5 @@
 node_modules/
 *.DS_Store
-dist/
-!dist/api/
-!dist/upload/
+dist/*
+dist/imgs/
+dist/lib/
