@@ -83,7 +83,7 @@ window.addEventListener('load', function() {
         if(drawLock) return;
         drawLock = true;// 避免绘制过程再次出发touch事件
         var i = 0, j=1;
-        var fadeStep = 10;// 文字淡入step数，用于Tween
+        var fadeStep = 8;// 文字淡入step数，用于Tween
         var startPosition = (c_width * 2 - wordWidth * sentences[stage - 1].length) / 2;// 根据文字长度计算渲染起始位置
         if (stage > 1) imgs[stage - 2].style.opacity = 0;
         imgs[stage - 1].style.opacity = 1;

@@ -8,8 +8,9 @@ var win_width = size * toleft + "px";
 var margin_left;
 var left1, left2, left3;
 var play_clone, m;
+var $window = $(".window");
 
-$(".window").css("width", win_width);
+$window.css("width", win_width);
 
 var key1 = 0;
 var key2 = 0;
@@ -66,13 +67,13 @@ $.ajax({
         var len = data.length;
         for (var i = 0; i < len; i++) {
             var new_img = '<li><img src="' + data[i] + '"></li>';
-            $(".window").append(new_img);
+            $window.append(new_img);
             size++;
-            $(".window").width(size * 150);
+            $window.width(size * 150);
             $(".play1").width(size * 150);
             m = 500 * size;
         }
-        $(".window").append(first_pic);
+        $window.append(first_pic);
         $(".window li img").css("width", "150px");
         margin_left = -1 * size * toleft + 'px';
         $(".play1").append(play_clone);

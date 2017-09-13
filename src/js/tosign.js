@@ -72,7 +72,7 @@ function UploadPic() {
             if (data == -1) {
                 alert("上传成功！");
                 window.location.reload();
-                location.href = "#sign";
+                swiper.slidePrev(false);
             } else {
                 alert("上传失败！请重试！");
             }
