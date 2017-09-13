@@ -33,16 +33,29 @@
 ================================================== */
 
 .onloading {
+    position: fixed;
+    top: 0;
+    bottom: 0;
     width: 100%;
-    height: 100%;
-    background-color: #000;
-    p {
-        color: #fff;
-        font-size: 48;
-        margin: auto auto;
+    background: url(./imgs/bg.png) repeat-y 0 0;
+    background-size: 100%;
+    z-index: 1000;
+    .icon{
+        display: block;
+        animation: loadRotate 2s infinite linear;
+        margin: 0 auto;
+        margin-top: 200px;
+        // transform-origin: center;
+    }
+    @keyframes loadRotate {
+        from {
+            transform: scale(.4) rotate(0deg);
+        }
+        to {
+            transform: scale(.4) rotate(360deg);
+        }
     }
 }
-
 .music {
     position: fixed;
     top: 20px;
