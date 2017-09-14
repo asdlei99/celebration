@@ -14,6 +14,9 @@ function shuffle(a) {
 }
 
 $(function () {
+    $('#signBtn').click(function() {
+        window.swiper.slideNext();
+    });
     var danmakuWrapper = document.getElementById('danmaku_wrapper');
     var danmakuPainter = new DanmakuPainter(danmakuWrapper);
     var random = function (min, max) {
@@ -30,7 +33,6 @@ $(function () {
         danmakuPainter.paint();
         requestAnimationFrame(paint);
     };
-    paint();
     var timerIds = [];
     window.initSignature = function () { // 在swiper滑动时监听
         resize();
@@ -40,9 +42,6 @@ $(function () {
             success: function (data) {
                 while (timerIds.length) {
                     clearTimeout(timerIds.pop())
-                }
-                if ('string' === typeof data) {
-                    data = JSON.parse(data);
                 }
                 var launch = function () {
                     shuffle(data);
@@ -69,6 +68,7 @@ $(function () {
                 };
                 launch();
                 if (!isRequestAnimationFrame) {
+                    isRequestAnimationFrame = true;
                     requestAnimationFrame(paint);
                 }
             }
