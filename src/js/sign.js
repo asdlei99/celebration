@@ -20,13 +20,20 @@ $(function () {
         return min + (max - min) * Math.random();
     };
     var resize = function () {
-        danmakuWrapper.style.height = window.innerHeight - $(danmakuWrapper).offset().top - 160 + 'px';
+        danmakuWrapper.style.height = $('.swiper-slide')[0].clientHeight - danmakuWrapper.offseTop - 120 + 'px';
         danmakuPainter.resize.bind(danmakuPainter)();
     };
     resize();
     window.addEventListener('resize', resize);
+    var isRequestAnimationFrame = false;
+    var paint = function () {
+        danmakuPainter.paint();
+        requestAnimationFrame(paint);
+    };
+    paint();
     var timerIds = [];
     window.initSignature = function () { // 在swiper滑动时监听
+        resize();
         $.ajax({
             type: 'POST',
             url: 'api/index.php?name=download',
@@ -61,6 +68,9 @@ $(function () {
                     timerIds.push(setTimeout(launch, t * 1000));
                 };
                 launch();
+                if (!isRequestAnimationFrame) {
+                    requestAnimationFrame(paint);
+                }
             }
         });
     }
