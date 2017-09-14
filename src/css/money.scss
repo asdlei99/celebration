@@ -38,6 +38,10 @@
     margin-left: 10%;
 }
 
+.uses table {
+    margin: 0 auto;
+}
+
 .progress {
     width: 100%;
 }
@@ -61,8 +65,6 @@
     float: left;
     width: 60px;
     height: 60px;
-    margin-top: 10px;
-    margin-left: 10px;
     background-color: #4cb4e2;
     border-radius: 50%
 }
@@ -73,16 +75,18 @@
     margin-top: 10px;
 }
 
-.progress>h2 {
-    margin-bottom: 0;
+.progress td {
+    padding: 10px;
+}
+
+.progress h2 {
+    margin: 0;
     font-weight: normal;
-    margin-left: 100px;
     font-size: 18px;
 }
 
-.progress>p {
-    margin-top: 3px;
-    margin-left: 100px;
+.progress p {
+    margin: 3px 0 0;
     font-size: 12px;
 }
 
