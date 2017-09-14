@@ -20,6 +20,14 @@
 
 确保有nodejs环境，之后运行`npm install -g gulp`全局安装gulp，再运行`npm install`安装gulp相关依赖。首次运行时命令行输入`gulp build`进行相关的编译，编译生成的文件在dist目录下，之后运行`gulp watch`即可监听文件变化并自动进行编译。调试时打开`dist/index.html`即可。
 
+下载<https://github.com/cantjie/eeyes-15th-anniversary>并解压到`dist/api`文件夹。
+
+在`dist/`目录下执行`php -S 0.0.0.0:8000`
+
+访问`http://127.0.0.1:8000/`即可
+
+注意：非Windows用户可能需要手动`mkdir dist/upload`，并`chmod 777 dist/upload`。
+
 ## 开发
 
 此处以添加word.html为例，说明页面开发流程，所有的开发均在src目录下完成。
