@@ -7,8 +7,14 @@
 项目结构说明：
 
 - dist/: 生成的文件都在这里
+  - index.html: 导入所有子页面之后的主页
+  - sprite.png: 自动生成的雪碧图
   - sprite.css: 自动生成的雪碧图样式文件
+  - all.css: 自动生成的打包的css
+  - all.js: 自动生成的打包的js
+  - media/bgm.mp3: 背景音乐
 - src/: 开发目录
+  - index.html: 网页入口
   - lib/: 第三方插件内容
   - pages/: 存放各页面，注意对应页面需要到`src/index.html`处引入
   - imgs/: 切图存放处，只支持png
@@ -27,6 +33,8 @@
 访问`http://127.0.0.1:8000/`即可
 
 注意：非Windows用户可能需要手动`mkdir dist/upload`，并`chmod 777 dist/upload`。
+
+`dist/media/bgm.mp3`仅在dist文件夹中存在，没有上传到Git仓库
 
 ## 开发
 
